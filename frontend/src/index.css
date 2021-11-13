@@ -6,11 +6,12 @@
   --color2: #2C394B;
   --color3: #334756;
   --color4: #FF2A00;
+  --color5: #b9b0ae;
 
 }
 
 body {
-  background-color: var(--color4) !important;
+  background-color: var(--color5) !important;
   margin: 0;
   font-family: "Roboto";
   -webkit-font-smoothing: antialiased;

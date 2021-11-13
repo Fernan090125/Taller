@@ -6,21 +6,33 @@ import useAuth from "../auth/useAuth";
 import Home from "../pages/home/home";
 import Login from "../pages/login/login";
 import Register from "../pages/Register/register";
-import dashboard from "../components/dashboard/dashboard";
+import Dashboard from "../components/dashboard/dashboard";
+import Nav from "../components/navbar/navbar";
 
 export default function AppRouter() {
-  const {islogged}=useAuth();
-  function dash(){
-      if (islogged()){
-          return <dashboard/>
-      }
+  const { isLogged } = useAuth();
+  function dash() {
+    if (isLogged()) {
+      return (
+        <>
+          <Nav />
+          <Dashboard />
+        </>
+      );
+    }
   }
   return (
     <Router>
       <Switch>
-      <Route exact path="/" component={Home}></Route>
-      <PublicRoute exact path="/login" component={Login}></PublicRoute>
-      <PrivateRoute exact path="/register" component={Register}></PrivateRoute>
+        {dash()}
+
+        <Route exact path="/" component={Home}></Route>
+        <PublicRoute exact path="/login" component={Login}></PublicRoute>
+        <PrivateRoute
+          exact
+          path="/register"
+          component={Register}
+        ></PrivateRoute>
       </Switch>
     </Router>
   );
