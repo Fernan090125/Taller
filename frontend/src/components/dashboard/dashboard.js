@@ -51,11 +51,11 @@ export default function Dashboard() {
             </Link>
 
             <Link to="/addProduct" className="link" style={{ textDecoration: "none" }}>
-              <li className="sidebarListItem">Agregar Productos</li>
+              <li className="sidebarListItem" id="AddProducto">Agregar Productos</li>
             </Link>
 
             <Link to="/editProduct" className="link" style={{ textDecoration: "none" }}>
-              <li className="sidebarListItem">Editar Productos</li>
+              <li className="sidebarListItem" id="EditProducto">Editar Productos</li>
             </Link>
           </ul>
           <h3 className="sidebarTitle">Ventas</h3>
