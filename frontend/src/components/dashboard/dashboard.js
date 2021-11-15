@@ -46,15 +46,15 @@ export default function Dashboard() {
           </ul>
           <h3 className="sidebarTitle">Productos</h3>
           <ul className="sidebarList">
-            <Link to="/" className="link" style={{ textDecoration: "none" }}>
-              <li className="sidebarListItem ">Ver Productos</li>
+            <Link to="/products" className="link" style={{ textDecoration: "none" }}>
+              <li className="sidebarListItem " id="VerProducto" >Ver Productos</li>
             </Link>
 
-            <Link to="/" className="link" style={{ textDecoration: "none" }}>
+            <Link to="/addProduct" className="link" style={{ textDecoration: "none" }}>
               <li className="sidebarListItem">Agregar Productos</li>
             </Link>
 
-            <Link to="/" className="link" style={{ textDecoration: "none" }}>
+            <Link to="/editProduct" className="link" style={{ textDecoration: "none" }}>
               <li className="sidebarListItem">Editar Productos</li>
             </Link>
           </ul>
