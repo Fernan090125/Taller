@@ -3,11 +3,29 @@ const User = require("../models/userModel");
 
 userCont.saveUser = async (req, res) => {
   try {
-    const { userUser, userPassword, type } = req.body;
+    const {
+      name,
+      apellido,
+      email,
+      direccion,
+      telefono,
+      Cedula,
+      Password,
+      rol,
+      cargo,
+      salario,
+    } = req.body;
     const newUser = new User({
-      userUser,
-      userPassword,
-      type,
+        name,
+        apellido,
+        email,
+        direccion,
+        telefono,
+        Cedula,
+        Password,
+        rol,
+        cargo,
+        salario,
     });
     await newUser.save();
     return res.json({ message: "Usuario guardado" });
@@ -19,12 +37,12 @@ userCont.saveUser = async (req, res) => {
 
 userCont.Login = async (req, res) => {
   try {
-    const { userUser, userPassword } = req.body;
+    const { email, Password } = req.body;
     const user = await User.findOne({ userUser });
     if (!user) {
       return res.json({ message: "Usuario no encontrado" });
     } else {
-      if (user.userPassword != userPassword) {
+      if (user.Password != Password) {
         return res.json({ message: "Contraseña incorrecta" });
       } else {
         return res.json({ message: "Bienvenido" });
