@@ -1,33 +1,36 @@
-const { Schema, model} = require("mongoose");
+const { Schema, model } = require("mongoose");
 
-const saleSchema = Schema({
+const saleSchema = Schema(
+  {
     employee: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
+      type: Schema.Types.ObjectId,
+      ref: "User",
     },
     customer: {
-        type:String,
-        required: true
+      type: String,
+      required: true,
     },
     products: [
-        {
-            product: {
-                type: Schema.Types.ObjectId,
-                ref: "Product"
-            },
-            quantity: Number
-        }
+      {
+        product: {
+          type: Schema.Types.ObjectId,
+          ref: "Product",
+        },
+        quantity: Number,
+      },
     ],
     total: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0,
     },
     date: {
-        type: Date,
-        default: Date.now       
-    }   
-}, {
-    timestamps: true
-});
+      type: Date,
+      default: Date.now,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = model("Sale", saleSchema,"Sales");
+module.exports = model("Sale", saleSchema, "Sales");
