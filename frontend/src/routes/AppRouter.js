@@ -5,10 +5,12 @@ import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 import useAuth from "../auth/useAuth";
 import Login from "../pages/login/login";
-import Home from "../pages/home/home";
+import Home from "../pages/home/home.jsx";
 import Register from "../pages/Register/register";
 import Dashboard from "../components/dashboard/dashboard";
 import Nav from "../components/navbar/navbar";
+import AuthProvider from "../auth/AuthProvider";
+import VerEmpleados from "../pages/verEmpleados/verEmpleados";
 export default function AppRouter() {
   const { isLogged } = useAuth();
 
@@ -16,28 +18,39 @@ export default function AppRouter() {
     if (isLogged()) {
       return (
         <>
-          {" "}
-          <Nav></Nav> <Dashboard />
+          <Dashboard />
         </>
       );
     }
   }
 
-  
+  function Navbar() {
+    if (isLogged()) {
+      return <Nav></Nav>;
+    }
+  }
 
   return (
     <Router>
-      {dash()}
-      <Switch>
-        <Route exact path="/" component={Home}></Route>
-        <PublicRoute exact path="/ingresar" component={Login}></PublicRoute>
+      {Navbar()}
+      <div className="cont">
+        {dash()}
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <PublicRoute path="/login">
+            <Login />
+          </PublicRoute>
+          <PrivateRoute path="/register">
+            <Register />
+          </PrivateRoute>
 
-        <PrivateRoute
-          exact
-          path="/register"
-          component={Register}
-        ></PrivateRoute>
-      </Switch>
+          <PrivateRoute path="/employees">
+            <VerEmpleados />
+          </PrivateRoute>
+        </Switch>
+      </div>
     </Router>
   );
 }

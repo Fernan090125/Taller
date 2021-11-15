@@ -1,6 +1,10 @@
 nav.navbar.navbar-expand.navbar-light {
-  background-color: white;
-  border-bottom: 5px solid transparent;
+  width: 100% !important;
+  height: 50px !important;
+  background-color: white !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 999 !important;
 }
 
 a.navbar-brand {
@@ -10,4 +14,9 @@ a.navbar-brand {
 
 .hola {
   margin: 0;
+  padding: 0 !important;
+}
+
+b {
+  color:cornflowerblue
 }
