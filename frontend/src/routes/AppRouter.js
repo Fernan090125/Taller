@@ -44,9 +44,9 @@ export default function AppRouter() {
       <div className="cont">
         {dash()}
         <Switch>
-          <Route exact path="/">
+          <PublicRoute exact path="/">
             <Login />
-          </Route>
+          </PublicRoute>
           <PrivateRoute exact path="/home">
             <Home />
           </PrivateRoute>
