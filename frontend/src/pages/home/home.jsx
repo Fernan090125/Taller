@@ -1,4 +1,6 @@
 import "./home.css";
+import Image from "react-bootstrap/Image";
+import taller from "../../assets/taller.jpg";
 import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
@@ -22,49 +24,7 @@ export default function Home() {
 
   return (
     <div className="home">
-      <Link to="/login">About</Link>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-      <h1>hola</h1>
-
-      <Link to="/ingresar">About</Link>
+      <Image src={taller} fluid />
     </div>
   );
 }

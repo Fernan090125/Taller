@@ -3,7 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import useAuth from "../auth/useAuth";
 function PublicRoute(props) {
   const { isLogged } = useAuth();
-  if (isLogged()) return <Redirect to="/" />;
+  if (isLogged()) return <Redirect to="/home" />;
   return <Route {...props} />;
 }
 

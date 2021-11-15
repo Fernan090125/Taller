@@ -6,7 +6,7 @@ export default function Dashboard() {
     <div className="sidebar">
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
-          <Link to="/" className="link" style={{ textDecoration: "none" }}>
+          <Link to="/home" className="link" style={{ textDecoration: "none" }}>
             <li className="sidebarListItem " id="inicio">
               <i className="icon-inicio"></i> &nbsp; Inicio
             </li>

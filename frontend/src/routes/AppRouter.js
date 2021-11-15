@@ -45,8 +45,11 @@ export default function AppRouter() {
         {dash()}
         <Switch>
           <Route exact path="/">
-            <Home />
+            <Login />
           </Route>
+          <PrivateRoute exact path="/home">
+            <Home />
+          </PrivateRoute>
           <PublicRoute path="/login">
             <Login />
           </PublicRoute>
