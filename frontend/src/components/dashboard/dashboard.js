@@ -8,7 +8,7 @@ export default function Dashboard() {
         <div className="sidebarMenu">
           <Link to="/" className="link" style={{ textDecoration: "none" }}>
             <li className="sidebarListItem " id="inicio">
-              Inicio
+              <i className="icon-inicio"></i> &nbsp; Inicio
             </li>
           </Link>
           &nbsp;
@@ -20,7 +20,7 @@ export default function Dashboard() {
               style={{ textDecoration: "none" }}
             >
               <li className="sidebarListItem " id="vEmpleados">
-                Ver Empleados
+                <i className="icon-verEmpleados"></i> &nbsp; Ver Empleados
               </li>
             </Link>
 
@@ -30,7 +30,7 @@ export default function Dashboard() {
               style={{ textDecoration: "none" }}
             >
               <li className="sidebarListItem" id="aEmpleados">
-                Agregar Empleados
+                <i className="icon-agregarEmpleado"></i> &nbsp;Agregar Empleados
               </li>
             </Link>
 
@@ -40,32 +40,63 @@ export default function Dashboard() {
               style={{ textDecoration: "none" }}
             >
               <li className="sidebarListItem" id="eEmployees">
-                Editar Empleados
+              <i className="icon-editarEmpleado"></i> &nbsp;Editar Empleados
               </li>
             </Link>
           </ul>
           <h3 className="sidebarTitle">Productos</h3>
           <ul className="sidebarList">
-            <Link to="/products" className="link" style={{ textDecoration: "none" }}>
-              <li className="sidebarListItem " id="VerProducto" >Ver Productos</li>
+            <Link
+              to="/products"
+              className="link"
+              style={{ textDecoration: "none" }}
+            >
+              <li className="sidebarListItem " id="VerProducto">
+                {" "}
+                <i className="icon-verProductos"></i> &nbsp; Ver Productos
+              </li>
             </Link>
 
-            <Link to="/addProduct" className="link" style={{ textDecoration: "none" }}>
-              <li className="sidebarListItem" id="AddProducto">Agregar Productos</li>
+            <Link
+              to="/addProduct"
+              className="link"
+              style={{ textDecoration: "none" }}
+            >
+              <li className="sidebarListItem" id="AddProducto">
+              <i className="icon-ProductIco"></i> &nbsp; Agregar Productos
+              </li>
             </Link>
 
-            <Link to="/editProduct" className="link" style={{ textDecoration: "none" }}>
-              <li className="sidebarListItem" id="EditProducto">Editar Productos</li>
+            <Link
+              to="/editProduct"
+              className="link"
+              style={{ textDecoration: "none" }}
+            >
+              <li className="sidebarListItem" id="EditProducto">
+              <i className="icon-editarProductos"></i> &nbsp;Editar Productos
+              </li>
             </Link>
           </ul>
           <h3 className="sidebarTitle">Ventas</h3>
           <ul className="sidebarList">
-            <Link to="/seeSales" className="link" style={{ textDecoration: "none" }}>
-              <li className="sidebarListItem " id = "sSales">Ver Ventas</li>
+            <Link
+              to="/seeSales"
+              className="link"
+              style={{ textDecoration: "none" }}
+            >
+              <li className="sidebarListItem " id="sSales">
+              <i className="icon-verVentas"></i> &nbsp;Ver Ventas
+              </li>
             </Link>
 
-            <Link to="/doSale" className="link" style={{ textDecoration: "none" }}>
-              <li className="sidebarListItem" id ="dSales">Realizar Venta</li>
+            <Link
+              to="/doSale"
+              className="link"
+              style={{ textDecoration: "none" }}
+            >
+              <li className="sidebarListItem" id="dSales">
+              <i className="icon-SaleIco"></i> &nbsp;Realizar Venta
+              </li>
             </Link>
           </ul>
         </div>

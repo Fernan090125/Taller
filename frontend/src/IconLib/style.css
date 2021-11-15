@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'aniproyect';
   src:
-    url('fonts/aniproyect.ttf?mc6toa') format('truetype'),
-    url('fonts/aniproyect.woff?mc6toa') format('woff'),
-    url('fonts/aniproyect.svg?mc6toa#aniproyect') format('svg');
+    url('fonts/aniproyect.ttf?mic60e') format('truetype'),
+    url('fonts/aniproyect.woff?mic60e') format('woff'),
+    url('fonts/aniproyect.svg?mic60e#aniproyect') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,10 +24,28 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-verVentas:before {
+  content: "\e920";
+}
+.icon-editarProductos:before {
+  content: "\e91e";
+}
+.icon-verProductos:before {
+  content: "\e91f";
+}
+.icon-verEmpleados:before {
+  content: "\e91d";
+}
+.icon-agregarEmpleado:before {
+  content: "\e91b";
+}
+.icon-editarEmpleado:before {
+  content: "\e91c";
+}
 .icon-ProductIco:before {
   content: "\e917";
 }
-.icon-UserLIco:before {
+.icon-verEm:before {
   content: "\e918";
 }
 .icon-SaleIco:before {

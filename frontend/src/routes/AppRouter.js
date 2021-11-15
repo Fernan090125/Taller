@@ -19,7 +19,6 @@ import VerProductos from "../pages/verProductos/verProductos";
 import AgregarProductos from "../pages/agregarProductos/agregarProductos.js";
 import EditProductos from "../pages/EditarProductos/EditarProductos";
 
-
 export default function AppRouter() {
   const { isLogged } = useAuth();
 
