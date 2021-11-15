@@ -11,18 +11,15 @@ import Dashboard from "../components/dashboard/dashboard";
 import Nav from "../components/navbar/navbar";
 import AuthProvider from "../auth/AuthProvider";
 import VerEmpleados from "../pages/verEmpleados/verEmpleados";
-<<<<<<< Updated upstream
 import AgregarEmpleado from "../pages/agregarEmpleados/agregarEmplado";
 import EditarEmpleadosPage from "../pages/editarEmpleados/editarEmpleados";
 import VerVentas from "../pages/verVentas/verVentas";
 import RealizarVenta from "../pages/realizarVenta/realizarVenta";
-=======
 import VerProductos from "../pages/verProductos/verProductos";
 import AgregarProductos from "../pages/agregarProductos/agregarProductos.js";
 import EditProductos from "../pages/EditarProductos/EditarProductos";
 
 
->>>>>>> Stashed changes
 export default function AppRouter() {
   const { isLogged } = useAuth();
 
@@ -62,7 +59,6 @@ export default function AppRouter() {
             <VerEmpleados />
           </PrivateRoute>
 
-<<<<<<< Updated upstream
           <PrivateRoute path="/addEmployees">
             <AgregarEmpleado />
           </PrivateRoute>
@@ -78,7 +74,6 @@ export default function AppRouter() {
           <PrivateRoute path="/doSale">
             <RealizarVenta />
           </PrivateRoute>
-=======
           <PrivateRoute path="/products">
             <VerProductos />
           </PrivateRoute>
@@ -90,8 +85,6 @@ export default function AppRouter() {
           <PrivateRoute path="/editProduct">
             <EditProductos />
           </PrivateRoute>
-
->>>>>>> Stashed changes
         </Switch>
       </div>
     </Router>
