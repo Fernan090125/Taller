@@ -1,5 +1,6 @@
 import "./agregarProductos.css";
 import { useEffect } from "react";
+import axios from "axios";
 
 export default function AgregarProductos() {
   useEffect(() => {
@@ -11,16 +12,31 @@ export default function AgregarProductos() {
     }
       document.getElementById("VerProducto").classList.add("active");
   }, []);
+
+  async function addProduct(e) {
+    e.preventDefault();
+    const { data } = await axios.post("http://localhost:4000/api/products/", {
+      name: document.getElementById("name").value,
+      price: document.getElementById("price").value,
+      category: document.getElementById("category").value,
+      description: document.getElementById("descripcion").value,
+      image: document.getElementById("img").value,
+      stock: document.getElementById("stock").value,
+      model: document.getElementById("model").value,
+    });
+    console.log(data);
+  }
+
   return (
     <div className="home">
       <div className="row">
         <div className="col-md-12">
           <div className="card">
             <div className="card-header">
-              <h4 className="card-title">Agregar Empleado</h4>
+              <h4 className="card-title">Agregar Producto</h4>
             </div>
             <div className="card-body">
-              <form>
+              <form type="Submit" onSubmit={addProduct} >
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
@@ -29,16 +45,18 @@ export default function AgregarProductos() {
                         type="text"
                         className="form-control"
                         placeholder="Nombre"
+                        id="name"
                       />
                     </div>
                   </div>
                   <div className="col-md-6 pl-1">
                     <div className="form-group">
-                      <label>Apellido</label>
+                      <label>Precio</label>
                       <input
                         type="text"
                         className="form-control"
                         placeholder="Apellido"
+                        id="price"
                       />
                     </div>
                   </div>
@@ -46,21 +64,23 @@ export default function AgregarProductos() {
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
-                      <label>Cedula</label>
+                      <label>Categoria</label>
                       <input
                         type="text"
                         className="form-control"
                         placeholder="Cedula"
+                        id="category"
                       />
                     </div>
                   </div>
                   <div className="col-md-6 pl-1">
                     <div className="form-group">
-                      <label>Telefono</label>
+                      <label>Descripcion</label>
                       <input
                         type="text"
                         className="form-control"
                         placeholder="Telefono"
+                        id="description"
                       />
                     </div>
                   </div>
@@ -68,21 +88,23 @@ export default function AgregarProductos() {
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
-                      <label>Direccion</label>
+                      <label>Imagen</label>
                       <input
                         type="text"
                         className="form-control"
                         placeholder="Direccion"
+                        id="img"
                       />
                     </div>
                   </div>
                   <div className="col-md-6 pl-1">
                     <div className="form-group">
-                      <label>Correo</label>
+                      <label>Cantidad</label>
                       <input
                         type="text"
                         className="form-control"
                         placeholder="Correo"
+                        id="stock"
                       />
                     </div>
                   </div>
@@ -90,41 +112,20 @@ export default function AgregarProductos() {
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
-                      <label>Cargo</label>
+                      <label>Modelo</label>
                       <input
                         type="text"
                         className="form-control"
                         placeholder="Cargo"
+                        id="model"
                       />
-                    </div>
-                  </div>
-                  <div className="col-md-6 pl-1">
-                    <div className="form-group">
-                      <label>Salario</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Salario"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="form-group">
-                      <label>Descripcion</label>
-                      <textarea
-                        rows="4"
-                        cols="80"
-                        className="form-control"
-                        placeholder="Descripcion"
-                      ></textarea>
                     </div>
                   </div>
                 </div>
                 <button
                   type="submit"
                   className="btn btn-info btn-fill pull-right"
+                  style={{marginTop:"10px",width:"100%"}}
                 >
                   Agregar
                 </button>

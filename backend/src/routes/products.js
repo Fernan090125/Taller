@@ -3,14 +3,15 @@ const { Router } = require("express");
 const {
   getProducts,
   getProduct,
-  createProduct,
+  saveProduct,
   updateProduct,
   deleteProduct,
-} = require("../controllers/products");
+} = require("../controllers/productController");
 
 const router = Router();
 
-router.route("/").get(getProducts).post(createProduct);
+router.route("/").get(getProducts);
+router.route("/").post(saveProduct);
 
 router.route("/:id").get(getProduct).put(updateProduct).delete(deleteProduct);
 

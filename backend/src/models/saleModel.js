@@ -6,7 +6,7 @@ const saleSchema = Schema({
         ref: "User"
     },
     customer: {
-        typee:String,
+        type:String,
         required: true
     },
     products: [

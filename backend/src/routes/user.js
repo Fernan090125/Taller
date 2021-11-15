@@ -6,12 +6,14 @@ const{
     saveUser,
     updateUser,
     deleteUser
-} = require('../controllers/user');
+} = require('../controllers/userController');
 
 
 const router = Router();
 
-router.route('/').get(getUsers).post(saveUser);
+router.post('/saveuser', saveUser);
+
+router.route('/').get(getUsers);
 
 router.route('/:id').get(getUser).put(updateUser).delete(deleteUser);
 

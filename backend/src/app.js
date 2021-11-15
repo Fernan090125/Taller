@@ -20,8 +20,9 @@ app.use(express.json());
 // routes
 
 app.use("/api/products", require("./routes/products"));
-app.use("/api/users", require("./routes/users"));
-app.use("/api/sales", require("./routes/sales"));
+app.use("/api/users", require("./routes/user"));
+app.use("/api/sales", require("./routes/sale"));
+
 //app.use(express.static(path.join(__dirname, "build")));
 
 async function main() {
