@@ -1,8 +1,6 @@
-import "./verEmpleados.css";
 import { useEffect } from "react";
-import useAuth from "../../auth/useAuth";
 
-export default function VerEmpleados() {
+export default function VerVentas() {
   useEffect(() => {
     document.title = "Home";
     if (!!document.getElementsByClassName("sidebarListItem active")[0]) {
@@ -11,7 +9,12 @@ export default function VerEmpleados() {
         .classList.remove("active");
     }
 
-    document.getElementById("vEmpleados").classList.add("active");
+    document.getElementById("sSales").classList.add("active");
   }, []);
-  return <div className="home">sta es la pestaña ver empleados</div>;
+
+  return (
+    <div className="home">
+      <h1>esta es la pestaña de ver ventas</h1>
+    </div>
+  );
 }

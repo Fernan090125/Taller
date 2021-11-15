@@ -1,8 +1,6 @@
-import "./verEmpleados.css";
 import { useEffect } from "react";
-import useAuth from "../../auth/useAuth";
 
-export default function VerEmpleados() {
+export default function EditarEmpleadosPage() {
   useEffect(() => {
     document.title = "Home";
     if (!!document.getElementsByClassName("sidebarListItem active")[0]) {
@@ -11,7 +9,11 @@ export default function VerEmpleados() {
         .classList.remove("active");
     }
 
-    document.getElementById("vEmpleados").classList.add("active");
+    document.getElementById("eEmployees").classList.add("active");
   }, []);
-  return <div className="home">sta es la pestaña ver empleados</div>;
+  return (
+    <div className="home">
+      <h1>esta es la pestaña de editar empleados</h1>
+    </div>
+  );
 }
