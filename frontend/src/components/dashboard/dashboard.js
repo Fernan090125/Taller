@@ -17,7 +17,7 @@ export default function Dashboard() {
           &nbsp;
           <h3 className="sidebarTitle">Empleados</h3>
           <ul className="sidebarList">
-            <Link to="/employees" className="link" style={{ textDecoration: "none" }}>
+            <Link to="/employees" className="link" id = "vEmpleados" style={{ textDecoration: "none" }}>
               <li className="sidebarListItem ">Ver Empleados</li>
             </Link>
 
