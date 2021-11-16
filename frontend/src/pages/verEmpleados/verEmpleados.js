@@ -50,7 +50,7 @@ export default function VerEmpleados() {
               <td>{empleado.apellido}</td>
               <td>{empleado.email}</td>
               <td>{empleado.rol}</td>
-              <td> <Link >  a </Link>  </td>
+              <td> <Link to="/editEmployees">  a </Link>  </td>
             </tr>
           </tbody>
         </>
