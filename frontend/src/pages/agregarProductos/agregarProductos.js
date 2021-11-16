@@ -15,7 +15,7 @@ export default function AgregarProductos() {
 
   async function addProduct(e) {
     e.preventDefault();
-    const { data } = await axios.post("http://localhost:4000/api/products/", {
+    const { data } = await axios.post("/api/products/", {
       name: document.getElementById("name").value,
       price: document.getElementById("price").value,
       category: document.getElementById("category").value,

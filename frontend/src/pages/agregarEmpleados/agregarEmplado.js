@@ -16,7 +16,7 @@ export default function AgregarEmpleado() {
 
   async function addEmployee(e) {
     e.preventDefault();
-    const { data } = await axios.post("http://localhost:4000/api/users/saveuser", {
+    const { data } = await axios.post("/api/users/saveuser", {
       name: document.getElementById("name").value,
       apellido: document.getElementById("lastname").value,
       email: document.getElementById("email").value,

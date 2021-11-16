@@ -1,7 +1,8 @@
 import "./verEmpleados.css";
 import { useEffect, useState } from "react";
 import useAuth from "../../auth/useAuth";
-import { Table } from "react-bootstrap";
+import { Table} from "react-bootstrap";
+import {Link} from "react-router-dom";
 import axios from "axios";
 
 export default function VerEmpleados() {
@@ -9,7 +10,7 @@ export default function VerEmpleados() {
 
   useEffect(() => {
     async function getEmpleados() {
-      const { data } = await axios.get("http://localhost:4000/api/users/");
+      const { data } = await axios.get("/api/users/");
 
       await setEmpleados(data);
     }
@@ -30,7 +31,31 @@ export default function VerEmpleados() {
 
   return (
     <div className="home">
-      <h1>hoooooo</h1>
+      <Table striped bordered hover size="sm">
+      <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Apellido</th>
+              <th>Email</th>
+              <th>Rol</th>
+            </tr>
+          </thead>
+        {empleados.map((empleado) => (
+        <>
+          <tbody>
+            <tr>
+              <td>{empleado.Cedula}</td>
+              <td>{empleado.name}</td>
+              <td>{empleado.apellido}</td>
+              <td>{empleado.email}</td>
+              <td>{empleado.rol}</td>
+              <td> <Link >  a </Link>  </td>
+            </tr>
+          </tbody>
+        </>
+      ))}
+    </Table>
     </div>
   );
 }
