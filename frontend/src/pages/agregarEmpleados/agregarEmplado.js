@@ -29,6 +29,20 @@ export default function AgregarEmpleado() {
       salario: document.getElementById("salary").value,
     });
     console.log(data);
+
+
+    document.getElementById("name").value = "";
+    document.getElementById("lastname").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("address").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("cedula").value = "";
+    document.getElementById("password").value = "";
+
+    document.getElementById("Rol").value = "";
+    document.getElementById("cargo").value = "";
+    document.getElementById("salary").value = "";
+    
   }
 
   return (
