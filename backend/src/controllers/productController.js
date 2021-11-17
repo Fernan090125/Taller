@@ -9,7 +9,7 @@ const s3 = new AWS.S3({
 productCont.saveProduct = async (req, res) => {
   try {
 
-    const { image } = req.File;
+    const { image } = req.files;
     const { name, price, category, description, stock, model } = req.body;
 
     console.log(image);

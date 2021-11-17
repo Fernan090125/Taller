@@ -32,17 +32,17 @@ export default function AgregarProductos() {
     formData.append("model", document.getElementById("model").value);
     formData.append("description", document.getElementById("detalles").value);
 
-    //await axios.post("api/products", formData);
+    await axios.post("/api/products", formData);
 
-    await axios.post("/api/products/", {
-      name: document.getElementById("name").value,
-      price: document.getElementById("price").value,
-      category: document.getElementById("category").value,
-      stock: document.getElementById("stock").value,
-      model: document.getElementById("model").value,
-      description: document.getElementById("detalles").value,
-      image: file,
-    });
+    // await axios.post("/api/products/", {
+    //   name: document.getElementById("name").value,
+    //   price: document.getElementById("price").value,
+    //   category: document.getElementById("category").value,
+    //   stock: document.getElementById("stock").value,
+    //   model: document.getElementById("model").value,
+    //   description: document.getElementById("detalles").value,
+    //   image: file,
+    // });
     setfileUrl(null);
   }
 
