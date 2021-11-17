@@ -69,6 +69,10 @@ export default function AppRouter() {
             <EditarEmpleadosPage />
           </PrivateRoute>
 
+          <PrivateRoute path="/editEmployees/:id">
+            <EditarEmpleadosPage />
+          </PrivateRoute>
+
           <PrivateRoute path="/seeSales">
             <VerVentas />
           </PrivateRoute>
@@ -87,6 +91,8 @@ export default function AppRouter() {
           <PrivateRoute path="/editProduct">
             <EditProductos />
           </PrivateRoute>
+
+          
         </Switch>
       </div>
     </Router>
