@@ -25,7 +25,8 @@ export default function AgregarProductos() {
     const formData = new FormData();
     formData.append("image", file);
     formData.append("name",document.getElementById("name").value)
-    await axios.post("/api/products/", {formData});
+    console.log(formData);
+    //await axios.post("/api/products/", {formData});
     setfileUrl(null);
   }
 
@@ -41,7 +42,7 @@ export default function AgregarProductos() {
 
   async function addProduct(e) {
     e.preventDefault();
-    const { data } = await axios.post("/api/products/", {
+    const { data } = {
       name: document.getElementById("name").value,
       price: document.getElementById("price").value,
       category: document.getElementById("category").value,
@@ -49,7 +50,7 @@ export default function AgregarProductos() {
       image: document.getElementById("img").value,
       stock: document.getElementById("stock").value,
       model: document.getElementById("model").value,
-    });
+    };
     console.log(data);
   }
 
@@ -62,7 +63,7 @@ export default function AgregarProductos() {
               <h4 className="card-title">Agregar Producto</h4>
             </div>
             <div className="card-body">
-              <form type="Submit" onSubmit={addProduct}>
+              <form type="Submit" onSubmit={subir}>
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
