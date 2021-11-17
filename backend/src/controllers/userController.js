@@ -77,12 +77,28 @@ userCont.getUser = async (req, res) => {
 
 userCont.updateUser = async (req, res) => {
   try {
-    const { id } = req.params.id;
-    const { userUser, userPassword, type } = req.body;
-    await User.findByIdAndUpdate(id, {
-      userUser,
-      userPassword,
-      type,
+    const {
+        name,
+        apellido,
+        email,
+        direccion,
+        telefono,
+        Cedula,
+        Password,
+        rol,
+        cargo,
+        salario
+    } = req.body;
+    await User.findByIdAndUpdate(Cedula, {
+        name,
+        apellido,
+        email,
+        direccion,
+        telefono,
+        Password,
+        rol,
+        cargo,
+        salario
     });
     return res.json({ message: "Usuario actualizado" });
   } catch (err) {

@@ -1,6 +1,7 @@
 import "./agregarProductos.css";
 import { useEffect } from "react";
 import axios from "axios";
+import { Form } from "react-bootstrap";
 
 export default function AgregarProductos() {
   useEffect(() => {
@@ -10,7 +11,7 @@ export default function AgregarProductos() {
         .getElementsByClassName("sidebarListItem active")[0]
         .classList.remove("active");
     }
-      document.getElementById("VerProducto").classList.add("active");
+    document.getElementById("VerProducto").classList.add("active");
   }, []);
 
   async function addProduct(e) {
@@ -19,7 +20,7 @@ export default function AgregarProductos() {
       name: document.getElementById("name").value,
       price: document.getElementById("price").value,
       category: document.getElementById("category").value,
-      description: document.getElementById("descripcion").value,
+      description: document.getElementById("Detalles").value,
       image: document.getElementById("img").value,
       stock: document.getElementById("stock").value,
       model: document.getElementById("model").value,
@@ -36,7 +37,7 @@ export default function AgregarProductos() {
               <h4 className="card-title">Agregar Producto</h4>
             </div>
             <div className="card-body">
-              <form type="Submit" onSubmit={addProduct} >
+              <form type="Submit" onSubmit={addProduct}>
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
@@ -65,22 +66,21 @@ export default function AgregarProductos() {
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
                       <label>Categoria</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Cedula"
-                        id="category"
-                      />
+                      <Form.Select aria-label="Default select example" id="Rol" >
+                        <option value="Motor">Motor</option>
+                        <option value="Transmision">Transmision</option>
+                        <option value="Direccion">Direccion</option>
+                      </Form.Select>
                     </div>
                   </div>
                   <div className="col-md-6 pl-1">
                     <div className="form-group">
-                      <label>Descripcion</label>
+                      <label>Detalles</label>
                       <input
                         type="text"
                         className="form-control"
                         placeholder="Telefono"
-                        id="description"
+                        id="Detalles"
                       />
                     </div>
                   </div>
@@ -89,12 +89,9 @@ export default function AgregarProductos() {
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
                       <label>Imagen</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Direccion"
-                        id="img"
-                      />
+                      <Form.Group controlId="formFile" className="mb-3">
+                        <Form.Control type="file"/>
+                      </Form.Group>
                     </div>
                   </div>
                   <div className="col-md-6 pl-1">
@@ -125,7 +122,7 @@ export default function AgregarProductos() {
                 <button
                   type="submit"
                   className="btn btn-info btn-fill pull-right"
-                  style={{marginTop:"10px",width:"100%"}}
+                  style={{ marginTop: "10px", width: "100%" }}
                 >
                   Agregar
                 </button>
@@ -136,5 +133,5 @@ export default function AgregarProductos() {
         </div>
       </div>
     </div>
-  )
+  );
 }
