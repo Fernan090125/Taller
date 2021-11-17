@@ -8,9 +8,11 @@ const s3 = new AWS.S3({
 
 productCont.saveProduct = async (req, res) => {
   try {
-    const { name, price, category, description, stock, model } = req.body;
-    const { image } = req.files;
 
+    const { image } = req.File;
+    const { name, price, category, description, stock, model } = req.body;
+
+    console.log(image);
     const upload = await s3
       .putObject({
         ACL: "public-read",

@@ -1,14 +1,14 @@
 import "./agregarProductos.css";
-import { useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Form } from "react-bootstrap";
 
 export default function AgregarProductos() {
-  const [file,setFile] = useState();
-  const [imagen,setimage] = useState();
-  const [fileUrl,setfileUrl] = useState(null);
+  const [file, setFile] = useState();
+  const [imagen, setimage] = useState();
+  const [fileUrl, setfileUrl] = useState(null);
 
-  function onChangefile(e){
+  function onChangefile(e) {
     setFile(e.target.files[0]);
     const imgfile = URL.createObjectURL(e.target.files[0]);
     setfileUrl(imgfile);
@@ -24,9 +24,25 @@ export default function AgregarProductos() {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", file);
-    formData.append("name",document.getElementById("name").value)
-    console.log(formData);
-    //await axios.post("/api/products/", {formData});
+    console.log(file);
+    formData.append("name", document.getElementById("name").value);
+    formData.append("price", document.getElementById("price").value);
+    formData.append("category", document.getElementById("category").value);
+    formData.append("stock", document.getElementById("stock").value);
+    formData.append("model", document.getElementById("model").value);
+    formData.append("description", document.getElementById("detalles").value);
+
+    //await axios.post("api/products", formData);
+
+    await axios.post("/api/products/", {
+      name: document.getElementById("name").value,
+      price: document.getElementById("price").value,
+      category: document.getElementById("category").value,
+      stock: document.getElementById("stock").value,
+      model: document.getElementById("model").value,
+      description: document.getElementById("detalles").value,
+      image: file,
+    });
     setfileUrl(null);
   }
 
@@ -46,7 +62,7 @@ export default function AgregarProductos() {
       name: document.getElementById("name").value,
       price: document.getElementById("price").value,
       category: document.getElementById("category").value,
-      description: document.getElementById("Detalles").value,
+      description: document.getElementById("detalles").value,
       image: document.getElementById("img").value,
       stock: document.getElementById("stock").value,
       model: document.getElementById("model").value,
@@ -63,7 +79,7 @@ export default function AgregarProductos() {
               <h4 className="card-title">Agregar Producto</h4>
             </div>
             <div className="card-body">
-              <form type="Submit" onSubmit={subir}>
+              <form type="Submit" onSubmit={(e) => subir(e)}>
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
@@ -92,7 +108,10 @@ export default function AgregarProductos() {
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
                       <label>Categoria</label>
-                      <Form.Select aria-label="Default select example" id="Rol" >
+                      <Form.Select
+                        aria-label="Default select example"
+                        id="category"
+                      >
                         <option value="Motor">Motor</option>
                         <option value="Transmision">Transmision</option>
                         <option value="Direccion">Direccion</option>
@@ -106,7 +125,7 @@ export default function AgregarProductos() {
                         type="text"
                         className="form-control"
                         placeholder="Telefono"
-                        id="Detalles"
+                        id="detalles"
                       />
                     </div>
                   </div>
@@ -115,8 +134,8 @@ export default function AgregarProductos() {
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
                       <label>Imagen</label>
-                      <Form.Group controlId="formFile" className="mb-3" >
-                        <Form.Control type="file" onChange={(e)=>onChangefile(e)}  />
+                      <Form.Group controlId="formFile" className="mb-3">
+                        <input type="file" onChange={(e) => onChangefile(e)} />
                       </Form.Group>
                       {img()}
                     </div>
