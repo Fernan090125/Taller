@@ -1,4 +1,5 @@
 const productCont = {};
+require("dotenv").config();
 const Product = require("../models/productModel");
 const AWS = require("aws-sdk");
 const spacesEndpoint = new AWS.Endpoint("sfo3.digitaloceanspaces.com");

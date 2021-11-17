@@ -46,6 +46,10 @@ export default function VerProductos() {
           <tbody>
             <tr>
               <td>{productos._id}</td>
+              <td>{productos.name}</td>
+              <td>{productos.category}</td>
+              <td>{productos.price}</td>
+              <td>{productos.stock}</td>
               <td> <Link to="/editProduct">  a </Link>  </td>
             </tr>
           </tbody>
