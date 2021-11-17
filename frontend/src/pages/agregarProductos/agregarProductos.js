@@ -1,9 +1,34 @@
 import "./agregarProductos.css";
-import { useEffect } from "react";
+import { useEffect,useState} from "react";
 import axios from "axios";
 import { Form } from "react-bootstrap";
 
 export default function AgregarProductos() {
+  const [file,setFile] = useState();
+  const [imagen,setimage] = useState();
+  const [fileUrl,setfileUrl] = useState(null);
+
+  function onChangefile(e){
+    setFile(e.target.files[0]);
+    const imgfile = URL.createObjectURL(e.target.files[0]);
+    setfileUrl(imgfile);
+  }
+
+  function img() {
+    if (fileUrl !== null) {
+      return <img src={fileUrl} style={{ width: "200px" }} alt="img"></img>;
+    }
+  }
+
+  async function subir(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", file);
+    formData.append("name",document.getElementById("name").value)
+    await axios.post("/api/products/", {formData});
+    setfileUrl(null);
+  }
+
   useEffect(() => {
     document.title = "VProduct";
     if (!!document.getElementsByClassName("sidebarListItem active")[0]) {
@@ -89,9 +114,10 @@ export default function AgregarProductos() {
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
                       <label>Imagen</label>
-                      <Form.Group controlId="formFile" className="mb-3">
-                        <Form.Control type="file"/>
+                      <Form.Group controlId="formFile" className="mb-3" >
+                        <Form.Control type="file" onChange={(e)=>onChangefile(e)}  />
                       </Form.Group>
+                      {img()}
                     </div>
                   </div>
                   <div className="col-md-6 pl-1">

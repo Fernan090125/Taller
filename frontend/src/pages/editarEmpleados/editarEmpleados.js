@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { Form } from "react-bootstrap";
 import axios from "axios";
+
 
 export default function EditarEmpleadosPage() {
   useEffect(() => {
