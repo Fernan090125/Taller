@@ -2,3 +2,8 @@ table.table.table-sm.table-striped.table-bordered.table-hover{
     width: 82%;
     margin-bottom: 26rem;
 }
+
+i.icon-editar::before{
+
+    color:black;
+}

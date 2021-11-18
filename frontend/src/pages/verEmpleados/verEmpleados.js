@@ -56,8 +56,11 @@ export default function VerEmpleados() {
                 <td>{empleado.name}</td>
                 <td>{empleado.email}</td>
                 <td>{empleado.rol}</td>
-                <td style={{ backgroundColor: "red" }}>
-                  <Button style={{ margin: "0" }}> a </Button>
+                <td style={{ backgroundColor: "", display: "flex" }}>
+                  <button style={{ margin: "0 auto" }}>
+                    {" "}
+                    <i className="icon-editar"></i>{" "}
+                  </button>
                 </td>
               </tr>
             </tbody>
