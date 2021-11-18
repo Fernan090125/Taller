@@ -1,9 +1,9 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import axios from "axios";
 
-
-export default function EditarEmpleadosPage() {
+export default function EditarEmpleadosPage(props) {
+  const [empleado, setEmpleado] = useState({});
   useEffect(() => {
     document.title = "Home";
     if (!!document.getElementsByClassName("sidebarListItem active")[0]) {
@@ -12,13 +12,36 @@ export default function EditarEmpleadosPage() {
         .classList.remove("active");
     }
 
+    const id = window.location.pathname.split("/")[2];
+
+    async function getEmployeeInfo() {
+      const response = await axios.get("/api/users/" + id);
+
+      console.log(response);
+
+      setEmpleado(response.data.user);
+    }
+
+    getEmployeeInfo();
+
     document.getElementById("eEmployees").classList.add("active");
   }, []);
 
+  useEffect(() => {
+    document.getElementById("name").value = empleado.name;
+    document.getElementById("lastname").value = empleado.apellido;
+    document.getElementById("email").value = empleado.email;
+    document.getElementById("phone").value = empleado.phone;
+    document.getElementById("address").value = empleado.direccion;
+    document.getElementById("phone").value = empleado.telefono;
+    document.getElementById("cargo").value = empleado.rol;
+    document.getElementById("salary").value = empleado.salario;
+  }, [empleado]);
+
   async function editEmployee(e) {
     e.preventDefault();
-    const id=document.getElementById("cedula").value
-    const { data } = await axios.put("/api/users/"+id, {
+    const id = document.getElementById("cedula").value;
+    const { data } = await axios.put("/api/users/" + id, {
       name: document.getElementById("name").value,
       apellido: document.getElementById("lastname").value,
       email: document.getElementById("email").value,
@@ -39,7 +62,6 @@ export default function EditarEmpleadosPage() {
     // document.getElementById("Rol").value = "";
     // document.getElementById("cargo").value = "";
     // document.getElementById("salary").value = "";
-    
   }
   return (
     <div className="home">

@@ -30,7 +30,7 @@ export default function VerEmpleados() {
     console.log(empleados);
   }, [empleados]);
 
-  async function editarEmpleado(id) {
+  function editarEmpleado(id) {
     history.push(`/editEmployees/${id}`);
   }
 
@@ -65,7 +65,7 @@ export default function VerEmpleados() {
                   <button
                     id={empleado._id}
                     style={{ margin: "0 auto" }}
-                    onClick={(e) => editarEmpleado(e.target.id)}
+                    onClick={(e) => editarEmpleado(empleado._id)}
                   >
                     {" "}
                     <i className="icon-editar"></i>{" "}

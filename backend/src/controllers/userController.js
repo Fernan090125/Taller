@@ -57,6 +57,7 @@ userCont.Login = async (req, res) => {
 userCont.getUsers = async (req, res) => {
   try {
     const users = await User.find();
+    console.log("owo");
     return res.json(users);
   } catch (err) {
     console.log(err);
@@ -66,9 +67,10 @@ userCont.getUsers = async (req, res) => {
 
 userCont.getUser = async (req, res) => {
   try {
-    const { id } = req.params.id;
-    const user = await User.findById(id);
-    return res.json(user);
+    const user = await User.findById(req.params.id);
+    console.log(user);
+    res.json({ user });
+    
   } catch (err) {
     console.log(err);
     return res.json({ message: "Error al obtener el usuario" });
