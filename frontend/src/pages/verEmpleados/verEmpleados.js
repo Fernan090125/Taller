@@ -2,11 +2,12 @@ import "./verEmpleados.css";
 import { useEffect, useState } from "react";
 import useAuth from "../../auth/useAuth";
 import { Table, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function VerEmpleados() {
   const [empleados, setEmpleados] = useState([]);
+  const history = useHistory();
 
   useEffect(() => {
     async function getEmpleados() {
@@ -28,6 +29,10 @@ export default function VerEmpleados() {
   useEffect(() => {
     console.log(empleados);
   }, [empleados]);
+
+  async function editarEmpleado(id) {
+    history.push(`/editEmployees/${id}`);
+  }
 
   return (
     <div className="home" style={{ backgroundColor: "", padding: "20px" }}>
@@ -57,7 +62,11 @@ export default function VerEmpleados() {
                 <td>{empleado.email}</td>
                 <td>{empleado.rol}</td>
                 <td style={{ backgroundColor: "", display: "flex" }}>
-                  <button style={{ margin: "0 auto" }}>
+                  <button
+                    id={empleado._id}
+                    style={{ margin: "0 auto" }}
+                    onClick={(e) => editarEmpleado(e.target.id)}
+                  >
                     {" "}
                     <i className="icon-editar"></i>{" "}
                   </button>

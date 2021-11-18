@@ -92,6 +92,10 @@ export default function AppRouter() {
             <EditProductos />
           </PrivateRoute>
 
+          <PrivateRoute path="/editProduct/:id">
+            <EditProductos />
+          </PrivateRoute>
+
           
         </Switch>
       </div>
