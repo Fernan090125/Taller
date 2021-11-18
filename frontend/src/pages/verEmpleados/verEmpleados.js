@@ -1,8 +1,8 @@
 import "./verEmpleados.css";
 import { useEffect, useState } from "react";
 import useAuth from "../../auth/useAuth";
-import { Table} from "react-bootstrap";
-import {Link} from "react-router-dom";
+import { Table, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function VerEmpleados() {
@@ -30,32 +30,40 @@ export default function VerEmpleados() {
   }, [empleados]);
 
   return (
-    <div className="home">
-      <Table striped bordered hover size="sm">
-      <thead>
-            <tr>
-              <th>#</th>
-              <th>Nombre</th>
-              <th>Apellido</th>
-              <th>Email</th>
-              <th>Rol</th>
-            </tr>
-          </thead>
+    <div className="home" style={{ backgroundColor: "", padding: "20px" }}>
+      <Table
+        striped
+        bordered
+        hover
+        size="sm"
+        style={{
+          width: "100%",
+          borderColor: "black",
+        }}
+      >
+        <thead>
+          <tr>
+            <th>Nombre</th>
+
+            <th>Email</th>
+            <th>Rol</th>
+          </tr>
+        </thead>
         {empleados.map((empleado) => (
-        <>
-          <tbody>
-            <tr>
-              <td>{empleado.Cedula}</td>
-              <td>{empleado.name}</td>
-              <td>{empleado.apellido}</td>
-              <td>{empleado.email}</td>
-              <td>{empleado.rol}</td>
-              <td> <Link to="/editEmployees">  a </Link>  </td>
-            </tr>
-          </tbody>
-        </>
-      ))}
-    </Table>
+          <>
+            <tbody>
+              <tr>
+                <td>{empleado.name}</td>
+                <td>{empleado.email}</td>
+                <td>{empleado.rol}</td>
+                <td style={{ backgroundColor: "red" }}>
+                  <Button style={{ margin: "0" }}> a </Button>
+                </td>
+              </tr>
+            </tbody>
+          </>
+        ))}
+      </Table>
     </div>
   );
 }
