@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { FormControl, FormGroup, Table } from "react-bootstrap";
 import ReactDOM from "react-dom";
+import axios from "axios";
 import "./realizarVenta.css";
 
 export default function RealizarVenta() {
@@ -17,6 +18,11 @@ export default function RealizarVenta() {
     document.getElementById("dSales").classList.add("active");
   }, []);
 
+  function getProductbyCategori(e){
+    const pbyc = axios.get(`/productos/categoria/${e.target.value}`);
+    console.log(e.target.value);
+  }
+
   async function addRow(e) {
     var row = {
       name: document.getElementById("producto").value,
@@ -25,9 +31,28 @@ export default function RealizarVenta() {
     const auw = rows;
     auw.push(row);
     setrows(auw);
-    console.log(rows);
-    setproductos(rows);
-    console.log(productos);
+    console.log("rows",rows);
+    productos.push(row)
+    console.log("productos",productos);
+    const filas=productos.map((producto) => (
+      <tr>
+        <td>{producto.quantity}</td>
+        <td>{producto.name}</td>
+
+        <td style={{ backgroundColor: "", display: "flex" }}>
+          <button style={{ margin: "0 auto" }}>
+            {" "}
+            <i className="icon-editar"></i>{" "}
+          </button>
+        </td>
+      </tr>
+    ))
+
+    ReactDOM.render(
+      filas,
+      document.getElementById("filas")
+    )
+
   }
 
   useEffect(() => {
@@ -119,6 +144,7 @@ export default function RealizarVenta() {
                         <Form.Select
                           aria-label="Default select example"
                           id="Categoria"
+                          onChange={getProductbyCategori}
                         >
                           <option value="Empleado">Empleado</option>
                           <option value="Admin">Admin</option>
@@ -145,7 +171,7 @@ export default function RealizarVenta() {
                         </Form.Select>
                       </div>
                       <input
-                        onClick={(e) => addRow(e)} 
+                        onClick={addRow} 
                         className="col-md-1 pr-1"
                         type="button"
                         value="Agregar"
@@ -182,19 +208,7 @@ export default function RealizarVenta() {
                       </tr>
                     </thead>
                     <tbody id="filas">
-                      {productos.map((producto) => (
-                        <tr>
-                          <td>{producto.quantity}</td>
-                          <td>{producto.name}</td>
-
-                          <td style={{ backgroundColor: "", display: "flex" }}>
-                            <button style={{ margin: "0 auto" }}>
-                              {" "}
-                              <i className="icon-editar"></i>{" "}
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
+                      
                     </tbody>
                   </Table>
                 </div>
