@@ -22,31 +22,17 @@ export default function RealizarVenta() {
       name: document.getElementById("producto").value,
       quantity: document.getElementById("cantidad").value,
     };
-    const auw = rows
+    const auw = rows;
     auw.push(row);
     setrows(auw);
     console.log(rows);
-    setproductos(rows)
+    setproductos(rows);
     console.log(productos);
-    const a = productos.map((producto) => {
-      return(
-      <tr>
-        <td>{producto.quantity}</td>
-        <td>{producto.name}</td>
-
-        <td style={{ backgroundColor: "", display: "flex" }}>
-          <button
-            style={{ margin: "0 auto" }}
-          >
-            {" "}
-            <i className="icon-editar"></i>{" "}
-          </button>
-        </td>
-      </tr>)
-    });
-    ReactDOM.render(a, document.getElementById("filas"));
   }
 
+  useEffect(() => {
+    console.log(productos);
+  }, [productos]);
   return (
     <div className="home">
       <div className="row">
@@ -159,7 +145,7 @@ export default function RealizarVenta() {
                         </Form.Select>
                       </div>
                       <input
-                        onClick={addRow}
+                        onClick={(e) => addRow(e)} 
                         className="col-md-1 pr-1"
                         type="button"
                         value="Agregar"
@@ -195,7 +181,21 @@ export default function RealizarVenta() {
                         <th>Precio total</th>
                       </tr>
                     </thead>
-                    <tbody id="filas"></tbody>
+                    <tbody id="filas">
+                      {productos.map((producto) => (
+                        <tr>
+                          <td>{producto.quantity}</td>
+                          <td>{producto.name}</td>
+
+                          <td style={{ backgroundColor: "", display: "flex" }}>
+                            <button style={{ margin: "0 auto" }}>
+                              {" "}
+                              <i className="icon-editar"></i>{" "}
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
                   </Table>
                 </div>
                 <button
