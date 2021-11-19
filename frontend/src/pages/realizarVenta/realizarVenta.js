@@ -18,9 +18,15 @@ export default function RealizarVenta() {
     document.getElementById("dSales").classList.add("active");
   }, []);
 
-  function getProductbyCategori(e){
-    const pbyc = axios.get(`/productos/categoria/${e.target.value}`);
-    console.log(e.target.value);
+  async function getProductbyCategori(e) {
+    const pbyc = await axios.post("/api/products/category", {
+      category: e.target.value,
+    });
+    const pro=pbyc.data.map((producto)=>{
+      <option>{producto.name} </option>
+    })
+    console.log(pro);
+    ReactDOM.render(pro, document.getElementById("producto"));
   }
 
   async function addRow(e) {
@@ -31,10 +37,10 @@ export default function RealizarVenta() {
     const auw = rows;
     auw.push(row);
     setrows(auw);
-    console.log("rows",rows);
-    productos.push(row)
-    console.log("productos",productos);
-    const filas=productos.map((producto) => (
+    console.log("rows", rows);
+    productos.push(row);
+    console.log("productos", productos);
+    const filas = productos.map((producto) => (
       <tr>
         <td>{producto.quantity}</td>
         <td>{producto.name}</td>
@@ -46,13 +52,9 @@ export default function RealizarVenta() {
           </button>
         </td>
       </tr>
-    ))
+    ));
 
-    ReactDOM.render(
-      filas,
-      document.getElementById("filas")
-    )
-
+    ReactDOM.render(filas, document.getElementById("filas"));
   }
 
   useEffect(() => {
@@ -146,8 +148,9 @@ export default function RealizarVenta() {
                           id="Categoria"
                           onChange={getProductbyCategori}
                         >
-                          <option value="Empleado">Empleado</option>
-                          <option value="Admin">Admin</option>
+                          <option value="Motor">Motor</option>
+                          <option value="Transmision">Transmision</option>
+                          <option value="Direccion">Direccion</option>
                         </Form.Select>
                       </div>
                       <div className="col-md-2 pr-1">
@@ -156,8 +159,6 @@ export default function RealizarVenta() {
                           aria-label="Default select example"
                           id="producto"
                         >
-                          <option value="Empleado">Empleado</option>
-                          <option value="Admin">Admin</option>
                         </Form.Select>
                       </div>
                       <div className="col-md-2 pr-1">
@@ -166,12 +167,11 @@ export default function RealizarVenta() {
                           aria-label="Default select example"
                           id="cantidad"
                         >
-                          <option value="Empleado">Empleado</option>
-                          <option value="Admin">Admin</option>
+                          
                         </Form.Select>
                       </div>
                       <input
-                        onClick={addRow} 
+                        onClick={addRow}
                         className="col-md-1 pr-1"
                         type="button"
                         value="Agregar"
@@ -207,9 +207,7 @@ export default function RealizarVenta() {
                         <th>Precio total</th>
                       </tr>
                     </thead>
-                    <tbody id="filas">
-                      
-                    </tbody>
+                    <tbody id="filas"></tbody>
                   </Table>
                 </div>
                 <button

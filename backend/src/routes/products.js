@@ -15,6 +15,6 @@ router.route("/").get(getProducts);
 router.route("/").post(saveProduct);
 
 router.route("/:id").get(getProduct).put(updateProduct).delete(deleteProduct);
-router.route("/:category").get(getProductsByCategory);
+router.route("/category").post(getProductsByCategory);
 
 module.exports = router;

@@ -103,8 +103,8 @@ productCont.deleteProduct = async (req, res) => {
 
 productCont.getProductsByCategory = async (req, res) => {
   try {
-    const { category } = req.params.category;
-    const products = await Product.find({ category });
+    const { category } = req.body;
+    const products = await Product.find();//{ category }
     return res.json(products);
   } catch (err) {
     console.log(err);
