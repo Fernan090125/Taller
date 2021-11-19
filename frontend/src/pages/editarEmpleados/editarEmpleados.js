@@ -34,8 +34,11 @@ export default function EditarEmpleadosPage(props) {
     document.getElementById("phone").value = empleado.phone;
     document.getElementById("address").value = empleado.direccion;
     document.getElementById("phone").value = empleado.telefono;
-    document.getElementById("cargo").value = empleado.rol;
+    document.getElementById("cargo").value = empleado.cargo;
     document.getElementById("salary").value = empleado.salario;
+    document.getElementById("cedula").value = empleado.Cedula;
+
+    console.log(empleado);
   }, [empleado]);
 
   async function editEmployee(e) {
