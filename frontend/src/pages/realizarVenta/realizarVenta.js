@@ -22,7 +22,9 @@ export default function RealizarVenta() {
       name: document.getElementById("producto").value,
       quantity: document.getElementById("cantidad").value,
     };
-    rows.push(row);
+    const auw = rows
+    auw.push(row);
+    setrows(auw);
     console.log(rows);
     setproductos(rows)
     console.log(productos);
