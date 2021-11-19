@@ -2,6 +2,9 @@ const { Schema, model } = require("mongoose");
 
 const saleSchema = Schema(
   {
+    id:{
+      type:Number
+    },
     employee: {
       type: Schema.Types.ObjectId,
       ref: "User",
