@@ -14,25 +14,37 @@ export default function RealizarVenta() {
       document
         .getElementsByClassName("sidebarListItem active")[0]
         .classList.remove("active");
+        getProductbyCategori("Motor");
     }
     document.getElementById("dSales").classList.add("active");
   }, []);
 
-  async function getProductbyCategori(e) {
+  function setO(e){
+    getProductbyCategori(e.target.value);
+  }
+
+  async function getProductbyCategori(category) {
     const pbyc = await axios.post("/api/products/category", {
-      category: e.target.value,
+      category,
     });
-    const pro=pbyc.data.map((producto)=>{
+    const d=pbyc.data
+    const pro=d.map((producto)=>(
       <option>{producto.name} </option>
-    })
-    console.log(pro);
+    ))
+    console.log(d);
     ReactDOM.render(pro, document.getElementById("producto"));
   }
 
   async function addRow(e) {
+    const name=document.getElementById("producto").value
+    const produc=await axios.post("/api/products/getproduct", {name});
+    console.log(produc.data[0].name);
+
     var row = {
-      name: document.getElementById("producto").value,
+      name: produc.data[0].name,
       quantity: document.getElementById("cantidad").value,
+      price: produc.data[0].price,
+      total: produc.data[0].price * document.getElementById("cantidad").value,
     };
     const auw = rows;
     auw.push(row);
@@ -44,13 +56,8 @@ export default function RealizarVenta() {
       <tr>
         <td>{producto.quantity}</td>
         <td>{producto.name}</td>
-
-        <td style={{ backgroundColor: "", display: "flex" }}>
-          <button style={{ margin: "0 auto" }}>
-            {" "}
-            <i className="icon-editar"></i>{" "}
-          </button>
-        </td>
+        <td>{producto.price}</td>
+        <td> {producto.total} </td>
       </tr>
     ));
 
@@ -146,7 +153,7 @@ export default function RealizarVenta() {
                         <Form.Select
                           aria-label="Default select example"
                           id="Categoria"
-                          onChange={getProductbyCategori}
+                          onChange={setO}
                         >
                           <option value="Motor">Motor</option>
                           <option value="Transmision">Transmision</option>
@@ -163,12 +170,16 @@ export default function RealizarVenta() {
                       </div>
                       <div className="col-md-2 pr-1">
                         <label>Cantidad</label>
-                        <Form.Select
+                        <input
+                          type="number"
                           aria-label="Default select example"
                           id="cantidad"
+                          className="form-control"
+                          min="1"
+                          defaultValue="1"
                         >
                           
-                        </Form.Select>
+                        </input>
                       </div>
                       <input
                         onClick={addRow}
