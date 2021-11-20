@@ -3,10 +3,13 @@ const Sale = require("../models/saleModel.js");
 
 salecont.saveSale = async (req, res) => {
   try {
-    const { employee, customer, products, total, date } = req.body;
+    const { employee, infocliente, products, total, date } = req.body;
+    const id = await Sale.find()
+    console.log(id.length)
     const sale = new Sale({
+      id: id.length + 1,
       employee,
-      customer,
+      infocliente,
       products,
       total,
       date,

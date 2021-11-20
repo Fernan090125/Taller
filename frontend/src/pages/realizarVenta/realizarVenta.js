@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { FormControl, FormGroup, Table } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import axios from "axios";
-import "./realizarVenta.css";
+import "./realizarVenta.css"; 
 
 export default function RealizarVenta() {
   const [productos, setproductos] = useState([]);
@@ -15,9 +15,45 @@ export default function RealizarVenta() {
         .getElementsByClassName("sidebarListItem active")[0]
         .classList.remove("active");
         getProductbyCategori("Motor");
+        getnventas();
     }
     document.getElementById("dSales").classList.add("active");
   }, []);
+
+  async function getnventas() {
+    const res = await axios.get("/api/sales");
+    document.getElementById("facturaNumber").value = res.data.length + 1;
+    console.log(res.data.length);
+  }
+
+  async function saveVenta(e) {
+    e.preventDefault();
+    let data = {
+      employee: "Taller",
+      infocliente:{
+        customer:document.getElementById("cliente").value,
+        customerId:document.getElementById("cedulaCli").value,
+        adress:document.getElementById("direccion").value,
+        phone:document.getElementById("TelefonoCli").value,
+      },
+      products:[],
+      total:0,
+      date:(document.getElementById("date").value),
+    }
+    productos.map((producto)=>(
+      data.products.push({
+        product: producto.name,
+        quantity: producto.quantity
+      })
+    ))
+    productos.map((producto)=>(
+      data.total += producto.quantity * producto.price
+    ))
+   
+    const result=await axios.post("/api/sales/", data)
+    console.log(result)
+  }
+
 
   function setO(e){
     getProductbyCategori(e.target.value);
@@ -57,7 +93,7 @@ export default function RealizarVenta() {
         <td>{producto.quantity}</td>
         <td>{producto.name}</td>
         <td>{producto.price}</td>
-        <td> {producto.total} </td>
+        <td>{producto.total} </td>
       </tr>
     ));
 
@@ -76,7 +112,7 @@ export default function RealizarVenta() {
               <h4 className="card-title">Realizar Venta</h4>
             </div>
             <div className="card-body">
-              <form type="Submit">
+              <form type="Submit" onSubmit={saveVenta} >
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
@@ -94,7 +130,7 @@ export default function RealizarVenta() {
                         className="form-control"
                         defaultValue="1"
                         disabled
-                        id="price"
+                        id="facturaNumber"
                       />
                     </div>
                   </div>
@@ -130,6 +166,7 @@ export default function RealizarVenta() {
                         type="text"
                         className="form-control"
                         placeholder="Direccion"
+                        id="direccion"
                       ></input>
                     </div>
                   </div>
