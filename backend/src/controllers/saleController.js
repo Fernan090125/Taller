@@ -34,9 +34,10 @@ salecont.getSales = async (req, res) => {
 
 salecont.getSale = async (req, res) => {
   try {
-    const { id } = req.params.id;
+    const { id } = req.params;
+    console.log(req.params)
     const sale = await Sale.findById(id);
-    res.status(200).json(sale);
+    res.json({sale});
   } catch (e) {
     console.log(e);
     res.status(500).json({ message: "Error getting sale" });

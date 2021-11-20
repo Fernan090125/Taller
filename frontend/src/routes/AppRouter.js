@@ -18,6 +18,7 @@ import RealizarVenta from "../pages/realizarVenta/realizarVenta";
 import VerProductos from "../pages/verProductos/verProductos";
 import AgregarProductos from "../pages/agregarProductos/agregarProductos.js";
 import EditProductos from "../pages/EditarProductos/EditarProductos";
+import Verventapage from "../pages/verVenta/verventa";
 
 export default function AppRouter() {
   const { isLogged } = useAuth();
@@ -96,6 +97,9 @@ export default function AppRouter() {
             <EditProductos />
           </PrivateRoute>
 
+          <PrivateRoute path="/Infoventa/:id">
+            <Verventapage />
+          </PrivateRoute>
           
         </Switch>
       </div>
