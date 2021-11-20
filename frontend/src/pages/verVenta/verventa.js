@@ -12,6 +12,7 @@ export default function Verventapage(props) {
       document
         .getElementsByClassName("sidebarListItem active")[0]
         .classList.remove("active");
+        
     }
 
     const id = window.location.pathname.split("/")[2];
@@ -25,7 +26,7 @@ export default function Verventapage(props) {
     getSaleInfo();
     console.log(venta);
 
-    document.getElementById("eEmployees").classList.add("active");
+    document.getElementById("sSales").classList.add("active");
   }, []);
 
   useEffect(() => {

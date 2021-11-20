@@ -94,10 +94,8 @@ export default function RealizarVenta() {
   }
 
   function setO(e) {
-    function setO(e) {
       getProductbyCategori(e.target.value);
-    }
-
+  }
     async function getProductbyCategori(category) {
       const pbyc = await axios.post("/api/products/category", {
         category,
@@ -106,7 +104,6 @@ export default function RealizarVenta() {
       const pro = d.map((producto) => <option>{producto.name} </option>);
       console.log(d);
       ReactDOM.render(pro, document.getElementById("producto"));
-    }
   }
 
   async function addRow(e) {
