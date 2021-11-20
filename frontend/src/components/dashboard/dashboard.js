@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 export default function Dashboard() {
   return (
     <div className="sidebar">
-      <div className="sidebarWrapper">
-        <div className="sidebarMenu">
+      <div className="sidebarWrapper" >
+        <div className="sidebarMenu" style ={{paddingTop:"10px"}}>
           <Link to="/home" className="link" style={{ textDecoration: "none" }}>
             <li className="sidebarListItem " id="inicio">
               <i className="icon-inicio"></i> &nbsp; Inicio
@@ -33,16 +33,6 @@ export default function Dashboard() {
                 <i className="icon-agregarEmpleado"></i> &nbsp;Agregar Empleados
               </li>
             </Link>
-
-            <Link
-              to="/editEmployees"
-              className="link"
-              style={{ textDecoration: "none" }}
-            >
-              <li className="sidebarListItem" id="eEmployees">
-              <i className="icon-editarEmpleado"></i> &nbsp;Editar Empleados
-              </li>
-            </Link>
           </ul>
           <h3 className="sidebarTitle">Productos</h3>
           <ul className="sidebarList">
@@ -63,17 +53,7 @@ export default function Dashboard() {
               style={{ textDecoration: "none" }}
             >
               <li className="sidebarListItem" id="AddProducto">
-              <i className="icon-ProductIco"></i> &nbsp; Agregar Productos
-              </li>
-            </Link>
-
-            <Link
-              to="/editProduct"
-              className="link"
-              style={{ textDecoration: "none" }}
-            >
-              <li className="sidebarListItem" id="EditProducto">
-              <i className="icon-editarProductos"></i> &nbsp;Editar Productos
+                <i className="icon-ProductIco"></i> &nbsp; Agregar Productos
               </li>
             </Link>
           </ul>
@@ -85,7 +65,7 @@ export default function Dashboard() {
               style={{ textDecoration: "none" }}
             >
               <li className="sidebarListItem " id="sSales">
-              <i className="icon-verVentas"></i> &nbsp;Ver Ventas
+                <i className="icon-verVentas"></i> &nbsp;Ver Ventas
               </li>
             </Link>
 
@@ -95,7 +75,7 @@ export default function Dashboard() {
               style={{ textDecoration: "none" }}
             >
               <li className="sidebarListItem" id="dSales">
-              <i className="icon-SaleIco"></i> &nbsp;Realizar Venta
+                <i className="icon-SaleIco"></i> &nbsp;Realizar Venta
               </li>
             </Link>
           </ul>

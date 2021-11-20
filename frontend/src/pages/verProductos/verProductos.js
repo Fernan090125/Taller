@@ -1,6 +1,6 @@
 import "./verProductos.css";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link , useHistory} from "react-router-dom";
 import { Table } from "react-bootstrap";
 import useAuth from "../../auth/useAuth";
 import axios from "axios";
@@ -8,6 +8,8 @@ import axios from "axios";
 export default function VerProductos() {
 
   const [productos, setProductos] = useState([]);
+  const history = useHistory();
+
   
   useEffect(() => {
     async function getProducts() {
@@ -28,34 +30,54 @@ export default function VerProductos() {
     console.log(productos);
   }, [productos]);
 
+  function editarProducto(id) {
+    console.log(id);
+    history.push(`/editProduct/${id}`);
+  }
+
+
   return (
-    <div className="home">
-      <Table striped bordered hover size="sm">
-      <thead>
-            <tr>
-              <th>#</th>
-              <th>Nombre</th>
-              <th>Categoria</th>
-              <th>Precio</th>
-              <th>Stock</th>
-              <th>Editar</th>
-            </tr>
-          </thead>
-        {productos.map((productos) => (
-        <>
-          <tbody>
-            <tr>
-              <td>{productos._id}</td>
-              <td>{productos.name}</td>
-              <td>{productos.category}</td>
-              <td>{productos.price}</td>
-              <td>{productos.stock}</td>
-              <td> <Link to="/editProduct">  a </Link>  </td>
-            </tr>
-          </tbody>
-        </>
-      ))}
-    </Table>
+    <div className="home" style={{ backgroundColor: "", padding: "20px" }}>
+      <Table
+        striped
+        bordered
+        hover
+        size="sm"
+        style={{
+          width: "100%",
+          borderColor: "black",
+        }}
+      >
+        <thead>
+          <tr>
+            <th>Nombre</th>
+
+            <th>Email</th>
+            <th>Rol</th>
+          </tr>
+        </thead>
+        {productos.map((producto) => (
+          <>
+            <tbody>
+              <tr>
+                <td>{producto.name}</td>
+                <td>{producto.email}</td>
+                <td>{producto.rol}</td>
+                <td style={{ backgroundColor: "", display: "flex" }}>
+                  <button
+                    id={producto._id}
+                    style={{ margin: "0 auto" }}
+                    onClick={(e) => editarProducto(producto._id)}
+                  >
+                    {" "}
+                    <i className="icon-editar"></i>{" "}
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </>
+        ))}
+      </Table>
     </div>
   );
 }
