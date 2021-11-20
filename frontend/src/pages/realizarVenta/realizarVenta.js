@@ -45,8 +45,27 @@ export default function RealizarVenta() {
   async function saveVenta(e) {
     e.preventDefault();
 
-    
+    if (/\d/.test(document.getElementById("cliente").value)) {
+      setalertaNombreN(true);
+    } else {
+      setalertaNombreN(false);
+    }
 
+    if (document.getElementById("cedulaCli").value.length != 10) {
+      setalertaNombreT(true);
+    } else {
+      setalertaNombreT(false);
+    }
+
+    if (
+      document.getElementById("cedulaCli").value.length != 10 ||
+      /\d/.test(document.getElementById("cliente").value) == true
+    ) {
+      setProblemas(false);
+      alert("owont");
+    }
+
+    if (problemas == false) {
       let data = {
         employee: "Taller",
         infocliente: {
@@ -71,23 +90,23 @@ export default function RealizarVenta() {
 
       const result = await axios.post("/api/sales/", data);
       console.log(result);
-    
+    }
   }
 
   function setO(e) {
+    function setO(e) {
+      getProductbyCategori(e.target.value);
+    }
 
-  function setO(e){
-    getProductbyCategori(e.target.value);
-  }
-
-  async function getProductbyCategori(category) {
-    const pbyc = await axios.post("/api/products/category", {
-      category,
-    });
-    const d = pbyc.data;
-    const pro = d.map((producto) => <option>{producto.name} </option>);
-    console.log(d);
-    ReactDOM.render(pro, document.getElementById("producto"));
+    async function getProductbyCategori(category) {
+      const pbyc = await axios.post("/api/products/category", {
+        category,
+      });
+      const d = pbyc.data;
+      const pro = d.map((producto) => <option>{producto.name} </option>);
+      console.log(d);
+      ReactDOM.render(pro, document.getElementById("producto"));
+    }
   }
 
   async function addRow(e) {
@@ -176,9 +195,6 @@ export default function RealizarVenta() {
     }
   }
 
-  useEffect(() => {
-    console.log(productos);
-  }, [productos]);
   return (
     <div className="home">
       <div className="row">
@@ -353,4 +369,3 @@ export default function RealizarVenta() {
     </div>
   );
 }
-
