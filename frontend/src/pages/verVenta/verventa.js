@@ -23,6 +23,7 @@ export default function Verventapage(props) {
     }
     
     getSaleInfo();
+    console.log(venta);
 
     document.getElementById("eEmployees").classList.add("active");
   }, []);
