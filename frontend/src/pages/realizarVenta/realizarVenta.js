@@ -14,6 +14,14 @@ export default function RealizarVenta() {
 
   const [alertaNombreT, setalertaNombreT] = useState(false);
 
+  const [alertaCedulaT, setAlertaCedulaT] = useState(false);
+
+  const [alertaCedulaL, setAlertaCedulaL] = useState(false);
+
+  const [alertaTelefonoT, setAlertaTelefonoT] = useState(false);
+
+  const [alertaTelefonoL, setAlertaTelefonoL] = useState(false);
+
   const [problemas, setProblemas] = useState(false);
 
   function verifyNumber(cadena) {
@@ -52,14 +60,33 @@ export default function RealizarVenta() {
     }
 
     if (document.getElementById("cedulaCli").value.length != 10) {
-      setalertaNombreT(true);
+      setAlertaCedulaT(true);
     } else {
-      setalertaNombreT(false);
+      setAlertaCedulaT(false);
+    }
+
+    if (isNaN(document.getElementById("cedulaCli").value)) {
+      setAlertaCedulaL(true);
+    } else {
+      setAlertaCedulaL(false);
+    }
+
+    if (document.getElementById("telefonoCLi").value.length != 10) {
+      setAlertaTelefonoT(true);
+    } else {
+      setAlertaCedulaT(false);
+    }
+
+    if (isNaN(document.getElementById("telefonoCli").value)) {
+      setAlertaTelefonoL(true);
+    } else {
+      setAlertaTelefonoL(false);
     }
 
     if (
       document.getElementById("cedulaCli").value.length != 10 ||
-      /\d/.test(document.getElementById("cliente").value) == true
+      /\d/.test(document.getElementById("cliente").value) == true ||
+      isNaN(document.getElementById("cedulaCli").value) == true
     ) {
       setProblemas(false);
       alert("owont");
@@ -94,16 +121,16 @@ export default function RealizarVenta() {
   }
 
   function setO(e) {
-      getProductbyCategori(e.target.value);
+    getProductbyCategori(e.target.value);
   }
-    async function getProductbyCategori(category) {
-      const pbyc = await axios.post("/api/products/category", {
-        category,
-      });
-      const d = pbyc.data;
-      const pro = d.map((producto) => <option>{producto.name} </option>);
-      console.log(d);
-      ReactDOM.render(pro, document.getElementById("producto"));
+  async function getProductbyCategori(category) {
+    const pbyc = await axios.post("/api/products/category", {
+      category,
+    });
+    const d = pbyc.data;
+    const pro = d.map((producto) => <option>{producto.name} </option>);
+    console.log(d);
+    ReactDOM.render(pro, document.getElementById("producto"));
   }
 
   async function addRow(e) {
@@ -183,6 +210,36 @@ export default function RealizarVenta() {
     }
   }
 
+  function alertaCedula() {
+    if (alertaCedulaT === true && alertaCedulaL === true) {
+      return alertaLetras();
+    } else {
+      if (alertaCedulaT === true) {
+        return alertaLongitud();
+      }
+      if (alertaCedulaL === true) {
+        return alertaLetras();
+      } else {
+        return null;
+      }
+    }
+  }
+
+  function alertaTelefono() {
+    if (alertaTelefonoT === true && alertaTelefonoL === true) {
+      return alertaLetras();
+    } else {
+      if (alertaTelefonoT === true) {
+        return alertaLongitud();
+      }
+      if (alertaTelefonoL === true) {
+        return alertaLetras();
+      } else {
+        return null;
+      }
+    }
+  }
+
   function onChangeName(e) {
     const name = e.target.value;
     if (name.length > 10) {
@@ -247,6 +304,7 @@ export default function RealizarVenta() {
                         id="cedulaCli"
                         required
                       />
+                      {alertaCedula()}
                     </div>
                   </div>
                 </div>
@@ -273,6 +331,8 @@ export default function RealizarVenta() {
                         id="TelefonoCli"
                         required
                       />
+
+                      {alertaTelefono()}
                     </div>
                   </div>
                 </div>
