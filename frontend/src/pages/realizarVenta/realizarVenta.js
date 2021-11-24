@@ -71,13 +71,13 @@ export default function RealizarVenta() {
       setAlertaCedulaL(false);
     }
 
-    if (document.getElementById("telefonoCLi").value.length != 10) {
+    if (document.getElementById("TelefonoCli").value.length != 10) {
       setAlertaTelefonoT(true);
     } else {
       setAlertaCedulaT(false);
     }
 
-    if (isNaN(document.getElementById("telefonoCli").value)) {
+    if (isNaN(document.getElementById("TelefonoCli").value)) {
       setAlertaTelefonoL(true);
     } else {
       setAlertaTelefonoL(false);
@@ -86,7 +86,9 @@ export default function RealizarVenta() {
     if (
       document.getElementById("cedulaCli").value.length != 10 ||
       /\d/.test(document.getElementById("cliente").value) == true ||
-      isNaN(document.getElementById("cedulaCli").value) == true
+      isNaN(document.getElementById("cedulaCli").value) == true ||
+      document.getElementById("TelefonoCli").value.length != 10 ||
+      isNaN(document.getElementById("TelefonoCli").value) == true
     ) {
       setProblemas(false);
       alert("owont");
