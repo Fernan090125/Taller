@@ -1,11 +1,13 @@
 import "./dashboard.css";
 import { Link } from "react-router-dom";
+import useAuth from "../../auth/useAuth";
 
 export default function Dashboard() {
+  const { logout } = useAuth();
   return (
     <div className="sidebar">
-      <div className="sidebarWrapper" >
-        <div className="sidebarMenu" style ={{paddingTop:"10px"}}>
+      <div className="sidebarWrapper">
+        <div className="sidebarMenu" style={{ paddingTop: "10px" }}>
           <Link to="/home" className="link" style={{ textDecoration: "none" }}>
             <li className="sidebarListItem " id="inicio">
               <i className="icon-inicio"></i> &nbsp; Inicio
@@ -78,7 +80,19 @@ export default function Dashboard() {
                 <i className="icon-SaleIco"></i> &nbsp;Realizar Venta
               </li>
             </Link>
+
+            
           </ul>
+
+          <button
+              className="link"
+              style={{ textDecoration: "none" , border:"none" , backgroundColor:"transparent" ,  padding:0}}
+              onClick={(e) => logout()}
+            >
+              <li className="sidebarListItem" id="dSales">
+                <i className="icon-SaleIco"></i> &nbsp;salaverga de aqui
+              </li>
+            </button>
         </div>
       </div>
     </div>
