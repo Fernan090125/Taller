@@ -5,7 +5,6 @@ import { Form } from "react-bootstrap";
 
 export default function AgregarProductos() {
   const [file, setFile] = useState();
-  const [imagen, setimage] = useState();
   const [fileUrl, setfileUrl] = useState(null);
 
   function onChangefile(e) {
@@ -34,15 +33,6 @@ export default function AgregarProductos() {
 
     await axios.post("/api/products", formData);
 
-    // await axios.post("/api/products/", {
-    //   name: document.getElementById("name").value,
-    //   price: document.getElementById("price").value,
-    //   category: document.getElementById("category").value,
-    //   stock: document.getElementById("stock").value,
-    //   model: document.getElementById("model").value,
-    //   description: document.getElementById("detalles").value,
-    //   image: file,
-    // });
     setfileUrl(null);
   }
 

@@ -1,48 +1,49 @@
 import { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { Table } from "react-bootstrap";
-import { FormGroup,FormControl } from "react-bootstrap";
+import { FormGroup, FormControl } from "react-bootstrap";
 import axios from "axios";
 
 export default function Verventapage(props) {
   const [venta, setventa] = useState({});
   useEffect(() => {
     document.title = "Home";
-    if (!!document.getElementsByClassName("sidebarListItem active")[0]) {
-      document
-        .getElementsByClassName("sidebarListItem active")[0]
-        .classList.remove("active");
-        
-    }
 
     const id = window.location.pathname.split("/")[2];
 
     async function getSaleInfo() {
-      const sale = await axios.get("/api/sales/"+id);
-      console.log(sale);
+      const sale = await axios.get("/api/sales/" + id);
+      console.log(sale.data.sale);
       setventa(sale.data.sale);
     }
-    
-    getSaleInfo();
-    console.log(venta);
 
-    document.getElementById("sSales").classList.add("active");
+    getSaleInfo();
   }, []);
 
   useEffect(() => {
-    document.getElementById("date").value = venta.date;
-    // document.getElementById("facturaNumber").value = venta.id;
-    // document.getElementById("cliente").value = venta.infocliente.customer;
-    // document.getElementById("cedulaCli").value = venta.infocliente.customerId;
-    // document.getElementById("address").value = empleado.direccion;
-    // document.getElementById("phone").value = empleado.telefono;
-    // document.getElementById("cargo").value = empleado.cargo;
-    // document.getElementById("salary").value = empleado.salario;
-    // document.getElementById("cedula").value = empleado.Cedula;
+    if (venta.infocliente) {
+      document.getElementById("date").value = venta.date;
+      document.getElementById("facturaNumber").value = venta.id;
+      document.getElementById("cliente").value = venta.infocliente.customer;
+      document.getElementById("cedulaCli").value = venta.infocliente.customerId;
+      document.getElementById("direccion").value = venta.infocliente.adress;
+      document.getElementById("TelefonoCli").value = venta.infocliente.phone;
+    }
+  }, [venta]);
 
-  }, []);
+  function renderProducts() {
+    if (venta.products) {
+      return venta.products.map((producto) => (
+        <tr>
+          <td>{producto.quantity}</td>
+          <td>{producto.product}</td>
+          <td>{producto.precioUnitario}</td>
+          <td>{producto.precioTotal}</td>
+        </tr>
+      ));
+    }
+  }
 
- 
   return (
     <div className="home">
       <div className="row">
@@ -52,7 +53,7 @@ export default function Verventapage(props) {
               <h4 className="card-title">Realizar Venta</h4>
             </div>
             <div className="card-body">
-              <form >
+              <form>
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
@@ -126,50 +127,7 @@ export default function Verventapage(props) {
                     </div>
                   </div>
                 </div>
-                <div className="row">
-                  <Form>
-                    <div className="row">
-                      <div className="col-md-2 pr-1">
-                        <label>Categoria</label>
-                        <Form.Select
-                          aria-label="Default select example"
-                          id="Categoria"
-                        >
-                          <option value="Motor">Motor</option>
-                          <option value="Transmision">Transmision</option>
-                          <option value="Direccion">Direccion</option>
-                        </Form.Select>
-                      </div>
-                      <div className="col-md-2 pr-1">
-                        <label>producto</label>
-                        <Form.Select
-                          aria-label="Default select example"
-                          id="producto"
-                        >
-                        </Form.Select>
-                      </div>
-                      <div className="col-md-2 pr-1">
-                        <label>Cantidad</label>
-                        <input
-                          type="number"
-                          aria-label="Default select example"
-                          id="cantidad"
-                          className="form-control"
-                          min="1"
-                          defaultValue="1"
-                        >
-                          
-                        </input>
-                      </div>
-                      <input
-                        className="col-md-1 pr-1"
-                        type="button"
-                        value="Agregar"
-                        style={{ marginTop: "auto", marginRight: "auto" }}
-                      />
-                    </div>
-                  </Form>
-                </div>
+                <div className="row"></div>
                 <div className="row">
                   <Table
                     striped
@@ -198,7 +156,7 @@ export default function Verventapage(props) {
                         <th>Precio total</th>
                       </tr>
                     </thead>
-                    <tbody id="filas"></tbody>
+                    <tbody id="filas">{renderProducts()}</tbody>
                   </Table>
                 </div>
                 <button

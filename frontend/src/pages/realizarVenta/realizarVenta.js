@@ -111,6 +111,8 @@ export default function RealizarVenta() {
         data.products.push({
           product: producto.name,
           quantity: producto.quantity,
+          precioUnitario: producto.price,
+          precioTotal: producto.total,
         })
       );
       productos.map(
@@ -137,8 +139,7 @@ export default function RealizarVenta() {
 
   async function addRow(e) {
     const name = document.getElementById("producto").value;
-    const produc = await axios.post("/api/products/getproduct", { name });
-    console.log(produc.data[0].name);
+    const produc = await axios.get("/api/products", name);
 
     var row = {
       name: produc.data[0].name,

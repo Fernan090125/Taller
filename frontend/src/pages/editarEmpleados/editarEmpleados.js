@@ -5,13 +5,6 @@ import axios from "axios";
 export default function EditarEmpleadosPage(props) {
   const [empleado, setEmpleado] = useState({});
   useEffect(() => {
-    document.title = "Home";
-    if (!!document.getElementsByClassName("sidebarListItem active")[0]) {
-      document
-        .getElementsByClassName("sidebarListItem active")[0]
-        .classList.remove("active");
-    }
-
     const id = window.location.pathname.split("/")[2];
 
     async function getEmployeeInfo() {
@@ -23,8 +16,6 @@ export default function EditarEmpleadosPage(props) {
     }
 
     getEmployeeInfo();
-
-    document.getElementById("eEmployees").classList.add("active");
   }, []);
 
   useEffect(() => {

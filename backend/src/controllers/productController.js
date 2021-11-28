@@ -9,7 +9,6 @@ const s3 = new AWS.S3({
 
 productCont.saveProduct = async (req, res) => {
   try {
-
     const { image } = req.files;
     const { name, price, category, description, stock, model } = req.body;
 
@@ -56,9 +55,9 @@ productCont.getProducts = async (req, res) => {
 
 productCont.getProduct = async (req, res) => {
   try {
-    const { name } = req.body;
-    const product = await Product.find({name});
-    return res.json(product);
+    const product = await Product.findById(req.params.id);
+    console.log(product);
+    res.json({ product });
   } catch (err) {
     console.log(err);
     return res.json({ message: "Error al obtener el producto" });
@@ -67,17 +66,17 @@ productCont.getProduct = async (req, res) => {
 
 productCont.updateProduct = async (req, res) => {
   try {
-    const { id } = req.params.id;
-    const { name, price, category, description, stock, model } = req.body;
+    const { name, price, category, description, stock, model, image } =
+      req.body;
 
-    const product = await Product.findByIdAndUpdate(id, {
-      name,
-      price,
-      category,
-      description,
-      stock,
-      model,
-      image,
+    await Product.findByIdAndUpdate(req.params.id, {
+      name: name,
+      price: price,
+      category: category,
+      description: description,
+      stock: stock,
+      model: model,
+      image: image,
     });
     return res.json({
       message: "Producto actualizado correctamente",
@@ -104,7 +103,7 @@ productCont.deleteProduct = async (req, res) => {
 productCont.getProductsByCategory = async (req, res) => {
   try {
     const { category } = req.body;
-    const products = await Product.find({category});//{ category }
+    const products = await Product.find({ category }); //{ category }
     return res.json(products);
   } catch (err) {
     console.log(err);

@@ -1,41 +1,73 @@
 import "./EditarProductos.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { useHistory } from "react-router";
 import axios from "axios";
 
+import { Form } from "react-bootstrap";
+
 export default function EditProductos() {
+
+  const history = useHistory();
+  const [producto, setProducto] = useState();
+
+  const [file, setFile] = useState();
+  const [fileUrl, setfileUrl] = useState(null);
   useEffect(() => {
-    document.title = "VProduct";
-    if (!!document.getElementsByClassName("sidebarListItem active")[0]) {
-      document
-        .getElementsByClassName("sidebarListItem active")[0]
-        .classList.remove("active");
+    const id = window.location.pathname.split("/")[2];
+
+    async function getProductInfo() {
+      const response = await axios.get("/api/products/" + id);
+
+      console.log(response.data.product);
+
+      setProducto(response.data.product);
     }
-      document.getElementById("EditProducto").classList.add("active");
+
+    getProductInfo();
   }, []);
 
+  useEffect(() => {
+    if (producto) {
+      document.getElementById("nombre").value = producto.name;
+      document.getElementById("descripcion").value = producto.description;
+      document.getElementById("precio").value = producto.price;
+      document.getElementById("cantidad").value = producto.stock;
+      document.getElementById("model").value = producto.model;
+      document.getElementById("category").value = producto.model;
+
+      setfileUrl(producto.image);
+    }
+  }, [producto]);
 
   async function EditProduct(e) {
     e.preventDefault();
-    const id=document.getElementById("name").value
-    const { data } = await axios.put("/api/products/"+id, {
-      name: document.getElementById("name").value,
-      price: document.getElementById("price").value,
+    const id = window.location.pathname.split("/")[2];
+    const { data } = await axios.put("/api/products/" + id, {
+      name: document.getElementById("nombre").value,
+      price: document.getElementById("precio").value,
       category: document.getElementById("category").value,
-      description: document.getElementById("detalles").value,
-      stock: document.getElementById("stock").value,
+      description: document.getElementById("descripcion").value,
+      stock: document.getElementById("cantidad").value,
       model: document.getElementById("model").value,
+      image: fileUrl,
     });
     console.log(data);
-    // document.getElementById("name").value = "";
-    // document.getElementById("lastname").value = "";
-    // document.getElementById("email").value = "";
-    // document.getElementById("address").value = "";
-    // document.getElementById("phone").value = "";
-    // document.getElementById("cedula").value = "";
-    // document.getElementById("Rol").value = "";
-    // document.getElementById("cargo").value = "";
-    // document.getElementById("salary").value = "";
+
+    history.push("/products");
     
+  }
+
+  function onChangefile(e) {
+    setFile(e.target.files[0]);
+    const imgfile = URL.createObjectURL(e.target.files[0]);
+    setfileUrl(imgfile);
+  }
+
+  function img() {
+    if (fileUrl !== null) {
+      return <img src={fileUrl} style={{ width: "200px" }} alt="img"></img>;
+    }
   }
   return (
     <div className="home">
@@ -46,7 +78,7 @@ export default function EditProductos() {
               <h4 className="card-title">Editar Producto</h4>
             </div>
             <div className="card-body">
-              <form type="Submit">
+              <form type="Submit" onSubmit={(e) => EditProduct(e)}>
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
@@ -55,7 +87,7 @@ export default function EditProductos() {
                         type="text"
                         className="form-control"
                         placeholder="Nombre"
-                        id="name"
+                        id="nombre"
                       />
                     </div>
                   </div>
@@ -66,7 +98,7 @@ export default function EditProductos() {
                         type="text"
                         className="form-control"
                         placeholder="Apellido"
-                        id="price"
+                        id="precio"
                       />
                     </div>
                   </div>
@@ -79,7 +111,7 @@ export default function EditProductos() {
                         type="text"
                         className="form-control"
                         placeholder="Telefono"
-                        id="detalles"
+                        id="descripcion"
                       />
                     </div>
                   </div>
@@ -90,14 +122,12 @@ export default function EditProductos() {
                         type="text"
                         className="form-control"
                         placeholder="Correo"
-                        id="stock"
+                        id="cantidad"
                       />
                     </div>
                   </div>
                 </div>
-                <div className="row">
-                  
-                </div>
+                <div className="row"></div>
                 <div className="row">
                   <div className="col-md-6 pr-1">
                     <div className="form-group">
@@ -109,6 +139,26 @@ export default function EditProductos() {
                         id="model"
                       />
                     </div>
+                  </div>
+
+                  <div className="col-md-6 pr-1">
+                    <div className="form-group">
+                      <label>Categoria</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Cargo"
+                        id="category"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="form-group">
+                    <label>Imagen</label>
+                    <Form.Group controlId="formFile" className="mb-3">
+                      <input type="file" onChange = {(e) => onChangefile(e)}/>
+                    </Form.Group>
+                    {img()}
                   </div>
                 </div>
                 <button

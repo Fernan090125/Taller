@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const mongose_uri = 'mongodb://localhost/TallerL'
+const mongose_uri = 'mongodb://localhost:27017/TallerL'
 //const mongose_uri ="mongodb+srv://root:1005661451@dialogflowcluster.fsiuc.mongodb.net/Taller?retryWrites=true&w=majority";
 mongoose
   .connect(mongose_uri, {
