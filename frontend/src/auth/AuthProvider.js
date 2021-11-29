@@ -13,8 +13,13 @@ function AuthProvider({ children }) {
   });
 
 
+  // window.onunload = () => {
+  //   localStorage.setItem("user", JSON.stringify(null));
+  // };
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
+    console.log(user);
   }, [user]);
 
   const login = (
@@ -25,6 +30,7 @@ function AuthProvider({ children }) {
     setUser({
       id: userCredentials_id,
       username: userCredentials_username,
+      rol: usersCredintials_rol
     });
   };
 

@@ -189,22 +189,6 @@ export default function RealizarVenta() {
     );
   }
 
-  function alertaCaracteres() {
-    return (
-      <h4 className="alert" id="alert1">
-        este campo no puede contener caracteres especiales
-      </h4>
-    );
-  }
-
-  function alertaVacio() {
-    return (
-      <h4 className="alert" id="alert1">
-        este campo no puede estar vacio
-      </h4>
-    );
-  }
-
   function alertaNombre() {
     if (alertaNombreN === true) {
       return alertaNumeros();

@@ -11,9 +11,61 @@ import {
 import { Link } from "react-router-dom";
 import "./login.css";
 import useAuth from "../../auth/useAuth";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 export default function Login() {
   const { login } = useAuth();
+  const [users, setUsers] = useState([]);
+
+  const [userTemp, setUserTemp] = useState();
+
+  const [passwordTemp, setPasswordTemp] = useState();
+
+  useEffect(() => {
+    async function fetchData() {
+      let a = await axios.get("/api/users");
+      setUsers(a.data);
+    }
+    fetchData();
+  }, []);
+
+  async function loginUser(e) {
+    e.preventDefault();
+
+    let user = users.find((user) => user.name === userTemp);
+
+    console.log(user);
+
+    if (user) {
+      if (user.Password === passwordTemp) {
+        login(user._id , user.name , user.rol);
+      } else {
+        alert("Contraseña incorrecta");
+      }
+    } else {
+      alert("Usuario no encontrado");
+    }
+
+  }
+
+  useEffect(() => {
+    console.log(users);
+  }, [users]);
+
+  function onChangeUser(e) {
+    setUserTemp(e.target.value);
+  }
+
+  function onChangePassword(e) {
+    setPasswordTemp(e.target.value);
+  }
+
+  useEffect(() => {
+    console.log(userTemp);
+    console.log(passwordTemp);
+  }, [passwordTemp, userTemp]);
+
   return (
     <>
       <Container
@@ -32,24 +84,32 @@ export default function Login() {
           Ingresar
         </h1>
         <Form className="d-grid gap-2 " id="loginForm">
-          <Form.Group className="group" controlId="formBasicEmail">
-            <Form.Label style={{ color: "white" }}>Usuario</Form.Label>
+          <Form.Group
+            className="group"
+            controlId="formBasicUser"
+            onChange={(e) => onChangeUser(e)}
+          >
+            <Form.Label style={{ color: "cornflowerblue" }}>Usuario</Form.Label>
             <Form.Control type="user" placeholder="Usuario" />
           </Form.Group>
 
-          <Form.Group className="group" controlId="formBasicPassword">
-            <Form.Label style={{ color: "white" }}>Contraseña</Form.Label>
+          <Form.Group
+            className="group"
+            controlId="formBasicPassword"
+            onChange={(e) => onChangePassword(e)}
+          >
+            <Form.Label style={{ color: "cornflowerblue" }}>Contraseña</Form.Label>
             <Form.Control type="password" placeholder="Contraseña" />
           </Form.Group>
           <Button
             variant="success btn-block"
             style={{
-              backgroundColor: "var(--color4)",
+              backgroundColor: "cornflowerblue",
               border: "none",
               height: "38px",
             }}
             id="loginB"
-            onClick={(e) => login("618ff364774fbb5a95625bcc")}
+            onClick={(e) => loginUser(e)}
           >
             Login
           </Button>

@@ -11,16 +11,6 @@ export default function Nav() {
 
   const [userName, setUserName] = useState();
 
-  useEffect(() => {
-    async function getUser() {
-      const response = await axios.get("/api/users/618ff364774fbb5a95625bcc");
-      console.log(user.id);
-      console.log(response);
-    }
-
-    getUser();
-  }, []);
-
   return (
     <Navbar style={{ paddingLeft: "10px" }}>
       <Navbar.Brand
@@ -33,8 +23,8 @@ export default function Nav() {
       <Container className="hola">
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            Signed in as: <a href="#login">{userName}</a>
+          <Navbar.Text style = {{marginRight:"10px"}}>
+            Logeado como: <a href="#login">{user.username}</a>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

@@ -1,9 +1,9 @@
 @font-face {
   font-family: 'aniproyect';
   src:
-    url('fonts/aniproyect.ttf?mic60e') format('truetype'),
-    url('fonts/aniproyect.woff?mic60e') format('woff'),
-    url('fonts/aniproyect.svg?mic60e#aniproyect') format('svg');
+    url('fonts/aniproyect.ttf?rjf44p') format('truetype'),
+    url('fonts/aniproyect.woff?rjf44p') format('woff'),
+    url('fonts/aniproyect.svg?rjf44p#aniproyect') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -24,6 +24,9 @@ i {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-door-open-solid:before {
+  content: "\e921";
+}
 .icon-verVentas:before {
   content: "\e920";
 }

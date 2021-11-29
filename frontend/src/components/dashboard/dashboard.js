@@ -80,22 +80,23 @@ export default function Dashboard() {
                 <i className="icon-SaleIco"></i> &nbsp;Realizar Venta
               </li>
             </Link>
-
-            
           </ul>
-
           <button
-              className="link"
-              style={{ textDecoration: "none" , border:"none" , backgroundColor:"transparent" ,  padding:0}}
-              onClick={(e) => logout()}
-            >
-              <li className="sidebarListItem" id="dSales">
-                <i className="icon-SaleIco"></i> &nbsp;salaverga de aqui
-              </li>
-            </button>
+            className="link"
+            style={{
+              textDecoration: "none",
+              border: "none",
+              backgroundColor: "transparent",
+              padding: 0,
+            }}
+            onClick={(e) => logout()}
+          >
+            <li className="sidebarListItem" id="dSales">
+              <i className="icon-door-open-solid"></i> &nbsp;Cerrar Sesión
+            </li>
+          </button>
         </div>
       </div>
     </div>
   );
 }
-  
