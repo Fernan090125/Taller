@@ -50,7 +50,7 @@ export default function Verventapage(props) {
         <div className="col-md-12">
           <div className="card">
             <div className="card-header">
-              <h4 className="card-title">Realizar Venta</h4>
+              <h4 className="card-title">Venta</h4>
             </div>
             <div className="card-body">
               <form>
@@ -159,13 +159,6 @@ export default function Verventapage(props) {
                     <tbody id="filas">{renderProducts()}</tbody>
                   </Table>
                 </div>
-                <button
-                  type="submit"
-                  className="btn btn-info btn-fill pull-right"
-                  style={{ marginTop: "10px", width: "100%" }}
-                >
-                  Agregar
-                </button>
                 <div className="clearfix"></div>
               </form>
             </div>
