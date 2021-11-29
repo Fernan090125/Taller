@@ -13,6 +13,10 @@ function AuthProvider({ children }) {
   });
 
 
+  window.onunload = () => {
+    localStorage.setItem("user", JSON.stringify(null));
+  };
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(user));
   }, [user]);
