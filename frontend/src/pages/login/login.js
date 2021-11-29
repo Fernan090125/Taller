@@ -39,7 +39,7 @@ export default function Login() {
 
     if (user) {
       if (user.Password === passwordTemp) {
-        login(user._id);
+        login(user._id , user.name , user.rol);
       } else {
         alert("Contraseña incorrecta");
       }
@@ -89,7 +89,7 @@ export default function Login() {
             controlId="formBasicUser"
             onChange={(e) => onChangeUser(e)}
           >
-            <Form.Label style={{ color: "white" }}>Usuario</Form.Label>
+            <Form.Label style={{ color: "cornflowerblue" }}>Usuario</Form.Label>
             <Form.Control type="user" placeholder="Usuario" />
           </Form.Group>
 
@@ -98,13 +98,13 @@ export default function Login() {
             controlId="formBasicPassword"
             onChange={(e) => onChangePassword(e)}
           >
-            <Form.Label style={{ color: "white" }}>Contraseña</Form.Label>
+            <Form.Label style={{ color: "cornflowerblue" }}>Contraseña</Form.Label>
             <Form.Control type="password" placeholder="Contraseña" />
           </Form.Group>
           <Button
             variant="success btn-block"
             style={{
-              backgroundColor: "var(--color4)",
+              backgroundColor: "cornflowerblue",
               border: "none",
               height: "38px",
             }}
