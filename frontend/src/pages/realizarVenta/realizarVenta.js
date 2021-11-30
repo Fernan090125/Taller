@@ -153,15 +153,30 @@ export default function RealizarVenta() {
     ReactDOM.render(pro, document.getElementById("producto"));
   }
 
+  function setCant(e) {
+    getMaxcant(e.target.value);
+  }
+  async function getMaxcant(name) {
+    const maxcant = await axios.post("/api/products/getproduct", {
+      name
+    });
+    var cant=(maxcant.data.product.stock);
+    document.getElementById("cantidad").max = cant;
+    document.getElementById("cantidad").value = 1;
+    //console.log(document.getElementById("producto").value)
+  }
+
   async function addRow(e) {
+    //console.log(document.getElementById("producto").value)
     const name = document.getElementById("producto").value;
-    const produc = await axios.get("/api/products", name);
+    const produc = await axios.post("/api/products/getproduct/",{name});
+    console.log(produc.data.product.name);
 
     var row = {
-      name: produc.data[0].name,
+      name: produc.data.product.name,
       quantity: document.getElementById("cantidad").value,
-      price: produc.data[0].price,
-      total: produc.data[0].price * document.getElementById("cantidad").value,
+      price: produc.data.product.price,
+      total: produc.data.product.price * document.getElementById("cantidad").value,
     };
     const auw = rows;
     auw.push(row);
@@ -359,6 +374,7 @@ export default function RealizarVenta() {
                         <Form.Select
                           aria-label="Default select example"
                           id="producto"
+                          onChange={setCant}
                         ></Form.Select>
                       </div>
                       <div className="col-md-2 pr-1" id = "Print">

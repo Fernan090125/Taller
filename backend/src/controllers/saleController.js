@@ -1,5 +1,6 @@
 const salecont = {};
 const Sale = require("../models/saleModel.js");
+const Product = require("../models/productModel");
 
 salecont.saveSale = async (req, res) => {
   try {
@@ -14,6 +15,15 @@ salecont.saveSale = async (req, res) => {
       total,
       date,
     });
+    for (let i = 0; i < products.length; i++) {
+      //console.log(products[i])
+      const product = await Product.findOne({name: products[i].product});
+      product.stock = product.stock - products[i].quantity;
+      if(product.stock < 0){
+        res.status(500).json({ message: "Error saving sale" });
+      }
+      await product.save();
+    }
     await sale.save();
     res.status(200).json({ message: "Sale saved" });
   } catch (e) {

@@ -55,8 +55,9 @@ productCont.getProducts = async (req, res) => {
 
 productCont.getProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
-    console.log(product);
+    const {name} = req.body;
+    //console.log(id);
+    const product = await Product.findOne({name});
     res.json({ product });
   } catch (err) {
     console.log(err);
@@ -123,6 +124,18 @@ productCont.updateStock = async (req, res) => {
   } catch (err) {
     console.log(err);
     return res.json({ message: "Error al actualizar el stock" });
+  }
+};
+
+productCont.getMaxcant = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findById(id);
+    console.log(product);
+    res.json({ product });
+  } catch (err) {
+    console.log(err);
+    return res.json({ message: "Error al obtener el producto" });
   }
 };
 
