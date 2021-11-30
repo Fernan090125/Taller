@@ -9,10 +9,11 @@ import AuthProvider from "./auth/AuthProvider";
 import SSRProvider from "react-bootstrap/SSRProvider";
 
 ReactDOM.render(
-  <SSRProvider>
+  <SSRProvider >
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      media="all"
     />
     <AuthProvider>
       <App />

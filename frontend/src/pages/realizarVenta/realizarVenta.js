@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import { FormControl, FormGroup, Table } from "react-bootstrap";
+import { FormControl, FormGroup, Table, Modal, Button } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import "./realizarVenta.css";
@@ -24,7 +24,11 @@ export default function RealizarVenta() {
 
   const [alertaTelefonoL, setAlertaTelefonoL] = useState(false);
 
-  const [problemas, setProblemas] = useState(true);
+  const [problemas, setProblemas] = useState(false);
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   function verifyNumber(cadena) {
     for (let i = 0; i < cadena.length; i++) {
@@ -48,8 +52,13 @@ export default function RealizarVenta() {
 
   async function getnventas() {
     const res = await axios.get("/api/sales");
-    document.getElementById("facturaNumber").value = res.data.length + 1;
+    document.getElementById("facturaNumber").value =
+      (await res.data.length) + 1;
     console.log(res.data.length);
+  }
+
+  function imprimirSeleccion(nombre) {
+    window.print();
   }
 
   async function saveVenta(e) {
@@ -92,9 +101,11 @@ export default function RealizarVenta() {
       document.getElementById("TelefonoCli").value.length != 10 ||
       isNaN(document.getElementById("TelefonoCli").value) == true
     ) {
-      setProblemas(false);
-      alert("owont");
+      setProblemas(true);
+      alert("Revise los campos");
     }
+
+    console.log(problemas);
 
     if (problemas == false) {
       let data = {
@@ -124,6 +135,8 @@ export default function RealizarVenta() {
       const result = await axios.post("/api/sales/", data);
       alert("Venta realizada");
       console.log(result);
+
+      imprimirSeleccion("factura");
     }
   }
 
@@ -244,21 +257,21 @@ export default function RealizarVenta() {
       <div className="row">
         <div className="col-md-12">
           <div className="card">
-            <div className="card-header">
+            <div className="card-header" id = "noPrint">
               <h4 className="card-title">Realizar Venta</h4>
             </div>
             <div className="card-body">
               <form type="Submit" onSubmit={saveVenta}>
                 <div className="row">
                   <div className="col-md-6 pr-1">
-                    <div className="form-group">
+                    <div className="form-group" id="noPrint">
                       <label>Fecha</label>
                       <FormGroup controlId="date" bsSize="large">
                         <FormControl type="date" required />
                       </FormGroup>
                     </div>
                   </div>
-                  <div className="col-md-6 pl-1">
+                  <div className="col-md-6 pl-1" id = "noPrint">
                     <div className="form-group">
                       <label>Numero de Factura</label>
                       <input
@@ -272,7 +285,7 @@ export default function RealizarVenta() {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-6 pr-1">
+                  <div className="col-md-6 pr-1" id = "noPrint">
                     <div className="form-group">
                       <label>Nombre Cliente</label>
                       <input
@@ -284,7 +297,7 @@ export default function RealizarVenta() {
                       {alertaNombre()}
                     </div>
                   </div>
-                  <div className="col-md-6 pl-1">
+                  <div className="col-md-6 pl-1" id = "noPrint">
                     <div className="form-group">
                       <label>Cedula Cliente</label>
                       <input
@@ -299,7 +312,7 @@ export default function RealizarVenta() {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-6 pr-1">
+                  <div className="col-md-6 pr-1" id = "noPrint">
                     <div className="form-group" style={{ margin: "0px" }}>
                       <label>Direccion</label>
                       <input
@@ -311,7 +324,7 @@ export default function RealizarVenta() {
                       ></input>
                     </div>
                   </div>
-                  <div className="col-md-6 pl-1">
+                  <div className="col-md-6 pl-1" id = "noPrint">
                     <div className="form-group">
                       <label>Telefono</label>
                       <input
@@ -329,7 +342,7 @@ export default function RealizarVenta() {
                 <div className="row">
                   <Form>
                     <div className="row">
-                      <div className="col-md-2 pr-1">
+                      <div className="col-md-2 pr-1" id = "noPrint">
                         <label>Categoria</label>
                         <Form.Select
                           aria-label="Default select example"
@@ -341,14 +354,14 @@ export default function RealizarVenta() {
                           <option value="Direccion">Direccion</option>
                         </Form.Select>
                       </div>
-                      <div className="col-md-2 pr-1">
+                      <div className="col-md-2 pr-1" id = "noPrint">
                         <label>producto</label>
                         <Form.Select
                           aria-label="Default select example"
                           id="producto"
                         ></Form.Select>
                       </div>
-                      <div className="col-md-2 pr-1">
+                      <div className="col-md-2 pr-1" id = "noPrint">
                         <label>Cantidad</label>
                         <input
                           type="number"
@@ -364,12 +377,13 @@ export default function RealizarVenta() {
                         className="col-md-1 pr-1"
                         type="button"
                         value="Agregar"
+                        id = "noPrint"
                         style={{ marginTop: "auto", marginRight: "auto" }}
                       />
                     </div>
                   </Form>
                 </div>
-                <div className="row">
+                <div className="row" id="">
                   <Table
                     striped
                     bordered
@@ -404,14 +418,70 @@ export default function RealizarVenta() {
                   type="submit"
                   className="btn btn-info btn-fill pull-right"
                   style={{ marginTop: "10px", width: "100%" }}
+                  id = "noPrint"
                 >
                   Agregar
                 </button>
                 <div className="clearfix"></div>
               </form>
             </div>
+
+            <Modal show={show} onHide={handleClose} animation={false} centered>
+              <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+              </Modal.Header>
+              <Modal.Body></Modal.Body>
+              <Modal.Footer>
+                <Button
+                  variant="secondary"
+                  onClick={handleClose}
+                  className="modalbuttons"
+                >
+                  Close
+                </Button>
+                <Button
+                  variant="primary"
+                  className="modalbuttons"
+                  type="submit"
+                >
+                  Save Changes
+                </Button>
+              </Modal.Footer>
+            </Modal>
           </div>
         </div>
+      </div>
+
+      <div className="row" id="factura">
+        <Table
+          striped
+          bordered
+          hover
+          size="sm"
+          style={{
+            width: "90%",
+            borderColor: "black",
+            marginTop: "10px",
+            marginLeft: "auto",
+            marginRight: "auto",
+            marginBottom: "10px",
+          }}
+        >
+          <thead>
+            <tr
+              style={{
+                textAlign: "center",
+                borderBlockColor: "aquamarine",
+              }}
+            >
+              <th>Cantidad</th>
+              <th>producto</th>
+              <th>Precio unitario</th>
+              <th>Precio total</th>
+            </tr>
+          </thead>
+          <tbody id="filas"></tbody>
+        </Table>
       </div>
     </div>
   );
