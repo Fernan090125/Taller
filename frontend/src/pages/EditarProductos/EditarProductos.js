@@ -17,7 +17,7 @@ export default function EditProductos() {
     const id = window.location.pathname.split("/")[2];
 
     async function getProductInfo() {
-      const response = await axios.get("/api/products/" + id);
+      const response = await axios.post("/api/products/getproduct2",{id});
 
       console.log(response.data.product);
 
@@ -34,7 +34,7 @@ export default function EditProductos() {
       document.getElementById("precio").value = producto.price;
       document.getElementById("cantidad").value = producto.stock;
       document.getElementById("model").value = producto.model;
-      document.getElementById("category").value = producto.model;
+      document.getElementById("category").value = producto.category;
 
       setfileUrl(producto.image);
     }

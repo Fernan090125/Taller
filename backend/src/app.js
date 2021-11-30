@@ -23,7 +23,7 @@ app.use("/api/products", require("./routes/products"));
 app.use("/api/users", require("./routes/user"));
 app.use("/api/sales", require("./routes/sale"));
 
-//app.use(express.static(path.join(__dirname, "build")));
+app.use(express.static(path.join(__dirname, "build")));
 
 async function main() {
   await app.listen(app.get("port"));

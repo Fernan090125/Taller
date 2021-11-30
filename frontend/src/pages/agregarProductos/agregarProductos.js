@@ -12,7 +12,7 @@ export default function AgregarProductos() {
 
   const [alertaStock, setAlertaStock] = useState(false);
 
-  const [problemas, setProblemas] = useState(true);
+  const [problemas, setProblemas] = useState(false);
 
   function onChangefile(e) {
     setFile(e.target.files[0]);
@@ -61,6 +61,8 @@ export default function AgregarProductos() {
       formData.append("description", document.getElementById("detalles").value);
 
       await axios.post("/api/products", formData);
+      alert("Producto agregado");
+      window.location.reload();
 
       setfileUrl(null);
     }

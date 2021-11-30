@@ -149,7 +149,10 @@ export default function RealizarVenta() {
     });
     const d = pbyc.data;
     const pro = d.map((producto) => <option>{producto.name} </option>);
-    console.log(d);
+    if (pbyc.length > 0) {
+      getMaxcant(d[0].name)  
+    }
+    
     ReactDOM.render(pro, document.getElementById("producto"));
   }
 
@@ -161,6 +164,7 @@ export default function RealizarVenta() {
       name
     });
     var cant=(maxcant.data.product.stock);
+    //console.log("cant",cant);
     document.getElementById("cantidad").max = cant;
     document.getElementById("cantidad").value = 1;
     //console.log(document.getElementById("producto").value)
@@ -170,7 +174,7 @@ export default function RealizarVenta() {
     //console.log(document.getElementById("producto").value)
     const name = document.getElementById("producto").value;
     const produc = await axios.post("/api/products/getproduct/",{name});
-    console.log(produc.data.product.name);
+    console.log(produc);
 
     var row = {
       name: produc.data.product.name,

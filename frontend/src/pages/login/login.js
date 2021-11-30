@@ -90,7 +90,7 @@ export default function Login() {
             onChange={(e) => onChangeUser(e)}
           >
             <Form.Label style={{ color: "cornflowerblue" }}>Usuario</Form.Label>
-            <Form.Control type="user" placeholder="Usuario" />
+            <Form.Control type="user" placeholder="Usuario" required/>
           </Form.Group>
 
           <Form.Group
@@ -99,7 +99,7 @@ export default function Login() {
             onChange={(e) => onChangePassword(e)}
           >
             <Form.Label style={{ color: "cornflowerblue" }}>Contraseña</Form.Label>
-            <Form.Control type="password" placeholder="Contraseña" />
+            <Form.Control type="password" placeholder="Contraseña" required/>
           </Form.Group>
           <Button
             variant="success btn-block"

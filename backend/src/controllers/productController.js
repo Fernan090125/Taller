@@ -56,7 +56,7 @@ productCont.getProducts = async (req, res) => {
 productCont.getProduct = async (req, res) => {
   try {
     const {name} = req.body;
-    //console.log(id);
+    //console.log();
     const product = await Product.findOne({name});
     res.json({ product });
   } catch (err) {
@@ -64,6 +64,18 @@ productCont.getProduct = async (req, res) => {
     return res.json({ message: "Error al obtener el producto" });
   }
 };
+
+
+productCont.getProduct2 = async (req, res) => {
+  try {
+    const {id} = req.body;
+    //console.log();
+    const product = await Product.findById(id);
+    res.json({ product });
+  } catch (err) {
+    console.log(err);
+    return res.json({ message: "Error al obtener el producto" });
+  }}
 
 productCont.updateProduct = async (req, res) => {
   try {

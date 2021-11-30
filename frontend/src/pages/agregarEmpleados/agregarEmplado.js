@@ -19,7 +19,7 @@ export default function AgregarEmpleado() {
 
   const [alertaSalarioT, setAlertaSalarioT] = useState(false);
 
-  const [problemas, setProblemas] = useState(true);
+  const [problemas, setProblemas] = useState(false);
 
   function verifyNumber(cadena) {
     for (let i = 0; i < cadena.length; i++) {
@@ -97,7 +97,7 @@ export default function AgregarEmpleado() {
       isNaN(document.getElementById("salary").value) == true
     ) {
       setProblemas(false);
-      alert("owont");
+      alert("Por favor, llene todos los campos correctamente");
     }
 
     if (problemas == false) {
