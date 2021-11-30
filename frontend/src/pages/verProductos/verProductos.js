@@ -51,9 +51,9 @@ export default function VerProductos() {
         <thead>
           <tr>
             <th>Nombre</th>
-
-            <th>Email</th>
-            <th>Rol</th>
+            <th>price</th>
+            <th>Stock</th>
+            <th></th>
           </tr>
         </thead>
         {productos.map((producto) => (
@@ -61,8 +61,8 @@ export default function VerProductos() {
             <tbody>
               <tr>
                 <td>{producto.name}</td>
-                <td>{producto.email}</td>
-                <td>{producto.rol}</td>
+                <td>{producto.price}</td>
+                <td>{producto.stock}</td>
                 <td style={{ backgroundColor: "", display: "flex" }}>
                   <button
                     id={producto._id}

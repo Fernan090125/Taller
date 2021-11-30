@@ -24,7 +24,7 @@ export default function Nav() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text style = {{marginRight:"10px"}}>
-            Logeado como: <a href="#login">{user.username}</a>
+            Logeado como: <a id="userloged" href="#login">{user.username}</a>
           </Navbar.Text>
         </Navbar.Collapse>
       </Container>

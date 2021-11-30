@@ -4,8 +4,10 @@ import { FormControl, FormGroup, Table } from "react-bootstrap";
 import ReactDOM from "react-dom";
 import axios from "axios";
 import "./realizarVenta.css";
+import useAuth from "../../auth/useAuth";
 
 export default function RealizarVenta() {
+  const { user } = useAuth();
   var numeros = "0123456789";
   const [productos, setproductos] = useState([]);
   const [rows, setrows] = useState([]);
@@ -22,7 +24,7 @@ export default function RealizarVenta() {
 
   const [alertaTelefonoL, setAlertaTelefonoL] = useState(false);
 
-  const [problemas, setProblemas] = useState(false);
+  const [problemas, setProblemas] = useState(true);
 
   function verifyNumber(cadena) {
     for (let i = 0; i < cadena.length; i++) {
@@ -96,7 +98,7 @@ export default function RealizarVenta() {
 
     if (problemas == false) {
       let data = {
-        employee: "Taller",
+        employee: user.username,
         infocliente: {
           customer: document.getElementById("cliente").value,
           customerId: document.getElementById("cedulaCli").value,
@@ -120,6 +122,7 @@ export default function RealizarVenta() {
       );
 
       const result = await axios.post("/api/sales/", data);
+      alert("Venta realizada");
       console.log(result);
     }
   }
