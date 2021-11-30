@@ -4,16 +4,17 @@ import useAuth from "../../auth/useAuth";
 
 export default function Dashboard() {
   const { logout } = useAuth();
-  return (
-    <div className="sidebar">
-      <div className="sidebarWrapper">
-        <div className="sidebarMenu" style={{ paddingTop: "10px" }}>
-          <Link to="/home" className="link" style={{ textDecoration: "none" }}>
-            <li className="sidebarListItem " id="inicio">
-              <i className="icon-inicio"></i> &nbsp; Inicio
-            </li>
-          </Link>
-          &nbsp;
+
+  const {user}= useAuth();
+
+  function renderEmpleados(){
+
+    if(user.rol=="Admin"){
+
+      return(
+
+        <>
+        &nbsp;
           <h3 className="sidebarTitle">Empleados</h3>
           <ul className="sidebarList">
             <Link
@@ -36,6 +37,26 @@ export default function Dashboard() {
               </li>
             </Link>
           </ul>
+        </>
+      )
+    }else{
+
+      return null
+    }
+  }
+
+  return (
+    <div className="sidebar">
+      <div className="sidebarWrapper">
+        <div className="sidebarMenu" style={{ paddingTop: "10px" }}>
+          <Link to="/home" className="link" style={{ textDecoration: "none" }}>
+            <li className="sidebarListItem " id="inicio">
+              <i className="icon-inicio"></i> &nbsp; Inicio
+            </li>
+          </Link>
+
+          {renderEmpleados()}
+          
           <h3 className="sidebarTitle">Productos</h3>
           <ul className="sidebarList">
             <Link
