@@ -59,7 +59,7 @@ export default function Verventapage(props) {
                     <div className="form-group">
                       <label>Fecha</label>
                       <FormGroup controlId="date" bsSize="large">
-                        <FormControl type="date" required />
+                        <FormControl type="date" required  disabled/>
                       </FormGroup>
                     </div>
                   </div>
@@ -85,6 +85,7 @@ export default function Verventapage(props) {
                         className="form-control"
                         id="cliente"
                         required
+                        disabled
                       ></input>
                     </div>
                   </div>
@@ -97,6 +98,7 @@ export default function Verventapage(props) {
                         placeholder="Cedula cliente"
                         id="cedulaCli"
                         required
+                        disabled
                       />
                     </div>
                   </div>
@@ -111,6 +113,7 @@ export default function Verventapage(props) {
                         placeholder="Direccion"
                         id="direccion"
                         required
+                        disabled
                       ></input>
                     </div>
                   </div>
@@ -123,6 +126,7 @@ export default function Verventapage(props) {
                         placeholder="Telefono"
                         id="TelefonoCli"
                         required
+                        disabled
                       />
                     </div>
                   </div>

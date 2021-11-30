@@ -264,14 +264,14 @@ export default function RealizarVenta() {
               <form type="Submit" onSubmit={saveVenta}>
                 <div className="row">
                   <div className="col-md-6 pr-1">
-                    <div className="form-group" id="noPrint">
+                    <div className="form-group" id="Print">
                       <label>Fecha</label>
                       <FormGroup controlId="date" bsSize="large">
                         <FormControl type="date" required />
                       </FormGroup>
                     </div>
                   </div>
-                  <div className="col-md-6 pl-1" id = "noPrint">
+                  <div className="col-md-6 pl-1" id = "Print">
                     <div className="form-group">
                       <label>Numero de Factura</label>
                       <input
@@ -284,8 +284,8 @@ export default function RealizarVenta() {
                     </div>
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-md-6 pr-1" id = "noPrint">
+                <div className="row" id="Print">
+                  <div className="col-md-6 pr-1" id = "Print">
                     <div className="form-group">
                       <label>Nombre Cliente</label>
                       <input
@@ -297,7 +297,7 @@ export default function RealizarVenta() {
                       {alertaNombre()}
                     </div>
                   </div>
-                  <div className="col-md-6 pl-1" id = "noPrint">
+                  <div className="col-md-6 pl-1" id = "Print">
                     <div className="form-group">
                       <label>Cedula Cliente</label>
                       <input
@@ -312,7 +312,7 @@ export default function RealizarVenta() {
                   </div>
                 </div>
                 <div className="row">
-                  <div className="col-md-6 pr-1" id = "noPrint">
+                  <div className="col-md-6 pr-1" id = "Print">
                     <div className="form-group" style={{ margin: "0px" }}>
                       <label>Direccion</label>
                       <input
@@ -324,7 +324,7 @@ export default function RealizarVenta() {
                       ></input>
                     </div>
                   </div>
-                  <div className="col-md-6 pl-1" id = "noPrint">
+                  <div className="col-md-6 pl-1" id = "Print">
                     <div className="form-group">
                       <label>Telefono</label>
                       <input
@@ -342,7 +342,7 @@ export default function RealizarVenta() {
                 <div className="row">
                   <Form>
                     <div className="row">
-                      <div className="col-md-2 pr-1" id = "noPrint">
+                      <div className="col-md-2 pr-1" id = "Print">
                         <label>Categoria</label>
                         <Form.Select
                           aria-label="Default select example"
@@ -361,7 +361,7 @@ export default function RealizarVenta() {
                           id="producto"
                         ></Form.Select>
                       </div>
-                      <div className="col-md-2 pr-1" id = "noPrint">
+                      <div className="col-md-2 pr-1" id = "Print">
                         <label>Cantidad</label>
                         <input
                           type="number"
@@ -383,7 +383,7 @@ export default function RealizarVenta() {
                     </div>
                   </Form>
                 </div>
-                <div className="row" id="">
+                <div className="row" id="print">
                   <Table
                     striped
                     bordered
