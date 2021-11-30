@@ -34,6 +34,11 @@ export default function VerProductos() {
     console.log(id);
     history.push(`/editProduct/${id}`);
   }
+  async function eliminarProducto(id) {
+    var result=await axios.delete(`/api/products/${id}`);
+    alert(result.data.message);
+    window.location.reload();
+  }
 
 
   return (
@@ -71,6 +76,14 @@ export default function VerProductos() {
                   >
                     {" "}
                     <i className="icon-editar"></i>{" "}
+                  </button>
+                  <button
+                    id={producto._id}
+                    style={{ margin: "0 auto" }}
+                    onClick={(e) => eliminarProducto(producto._id)}
+                  >
+                    {" "}
+                    <i className="icon-eliminar"></i>{" "}
                   </button>
                 </td>
               </tr>

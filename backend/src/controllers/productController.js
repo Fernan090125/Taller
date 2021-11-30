@@ -89,7 +89,7 @@ productCont.updateProduct = async (req, res) => {
 
 productCont.deleteProduct = async (req, res) => {
   try {
-    const { id } = req.params.id;
+    const { id } = req.params;
     await Product.findByIdAndDelete(id);
     return res.json({
       message: "Producto eliminado correctamente",
@@ -110,5 +110,22 @@ productCont.getProductsByCategory = async (req, res) => {
     return res.json({ message: "Error al obtener los productos" });
   }
 };
+
+productCont.updateStock = async (req, res) => {
+  try {
+    const { stock,id } = req.body;
+    await Product.findByIdAndUpdate(id, {
+      stock: stock,
+    });
+    return res.json({
+      message: "Stock actualizado correctamente",
+    });
+  } catch (err) {
+    console.log(err);
+    return res.json({ message: "Error al actualizar el stock" });
+  }
+};
+
+
 
 module.exports = productCont;
