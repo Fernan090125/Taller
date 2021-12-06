@@ -362,7 +362,7 @@ export default function AgregarEmpleado() {
                     <div className="form-group">
                       <label>Contraseña</label>
                       <input
-                        type="text"
+                        type="password"
                         className="form-control"
                         placeholder="Contraseña"
                         id="password"
